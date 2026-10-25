@@ -1,0 +1,1871 @@
+<<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SEASALT Hospitality | Curated Luxury Villas & Private Stays</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts: Plus Jakarta Sans + Cormorant Garamond Italic / Alex Brush -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@1,500;1,600;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            script: ['"Cormorant Garamond"', 'serif'],
+            calligraphy: ['"Alex Brush"', 'cursive'],
+          },
+          colors: {
+            luxPink: '#E14B6E',
+            luxPinkHover: '#c93b5c',
+            luxTeal: '#5B8E9B',
+            luxTealDark: '#477480',
+            luxDark: '#1A1A1A',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom Script Accent Styling */
+    .script-accent {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 600;
+      font-size: 1.18em;
+      letter-spacing: 0.01em;
+    }
+    /* Wavy underline for Teal Statement Banner */
+    .wavy-underline {
+      text-decoration-line: underline;
+      text-decoration-style: wavy;
+      text-decoration-color: rgba(255, 255, 255, 0.85);
+      text-underline-offset: 6px;
+      text-decoration-thickness: 1.5px;
+    }
+    /* Tilted Cards Animation */
+    .tilt-left { transform: rotate(-3deg); transition: all 0.35s ease; }
+    .tilt-right { transform: rotate(2.5deg); transition: all 0.35s ease; }
+    .tilt-left:hover, .tilt-right:hover { transform: rotate(0deg) scale(1.03); z-index: 20; }
+    /* Hide scrollbar for clean carousels */
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  </style>
+</head>
+
+<body class="bg-white text-luxDark font-sans antialiased selection:bg-luxPink selection:text-white">
+
+  <!-- ========================================================= -->
+  <!-- UPGRADED FUTURISTIC DARK HEADER WITH INTERACTIVE PILL BAR -->
+  <!-- ========================================================= -->
+  <header class="sticky top-0 z-40 px-3 sm:px-6 lg:px-8 pt-3 pb-2">
+    <div class="max-w-7xl mx-auto h-20 rounded-2xl bg-stone-950/90 backdrop-blur-2xl border border-white/15 shadow-[0_12px_40px_rgba(0,0,0,0.45)] px-4 sm:px-6 flex items-center justify-between gap-4 relative overflow-visible text-white">
+      
+      <!-- Futuristic Neon Top Hairline -->
+      <div class="pointer-events-none absolute top-0 inset-x-16 h-[1px] bg-gradient-to-r from-transparent via-luxPink to-transparent opacity-80"></div>
+
+      <!-- Brand Logo -->
+      <button onclick="showPage('home')" class="flex items-center gap-3 text-left group focus:outline-none shrink-0">
+        <div class="w-11 h-11 rounded-full border border-white/25 bg-white/5 flex items-center justify-center relative shadow-[0_0_20px_rgba(225,75,110,0.25)] group-hover:border-luxPink transition duration-500">
+          <svg class="w-6 h-6 text-white group-hover:text-luxPink group-hover:rotate-90 transition-all duration-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M12 3c2.5 3 2.5 6 0 9-2.5-3-2.5-6 0-9zM12 12c2.5 3 2.5 6 0 9-2.5-3-2.5-6 0-9z"/>
+            <path d="M3 12c3-2.5 6-2.5 9 0-3 2.5-6 2.5-9 0zM12 12c3-2.5 6-2.5 9 0-3 2.5-6 2.5-9 0z"/>
+          </svg>
+        </div>
+        <div>
+          <span class="block text-lg font-bold tracking-[0.26em] text-white leading-none">SEASALT</span>
+          <span class="block text-[8px] font-medium tracking-[0.35em] text-luxPink mt-1">HOSPITALITY</span>
+        </div>
+      </button>
+
+      <!-- ===================================================== -->
+      <!-- INTERACTIVE COMPACT SEARCH PILL                       -->
+      <!-- ===================================================== -->
+      <div id="headerCompactSearch" class="hidden lg:flex items-center bg-white/10 border border-white/15 rounded-full pl-4 pr-1.5 py-1.5 backdrop-blur-md text-xs gap-3 relative">
+        
+        <!-- 1. LOCATION SELECTOR BUTTON -->
+        <div class="relative">
+          <button type="button" onclick="toggleHeaderDropdown('headerLocationMenu', event)" 
+                  class="font-medium text-white hover:text-luxPink px-2 py-1 rounded-full hover:bg-white/5 transition flex items-center gap-1.5 focus:outline-none whitespace-nowrap">
+            <span id="headerLocationText">Location Selector</span>
+            <i data-lucide="chevron-down" class="w-3 h-3 text-luxPink"></i>
+          </button>
+
+          <!-- Location Dropdown Menu -->
+          <div id="headerLocationMenu" onclick="event.stopPropagation()" 
+               class="header-dropdown hidden absolute left-0 top-11 w-64 bg-stone-950/95 backdrop-blur-2xl border border-white/15 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.7)] p-2 z-50">
+            <div class="px-3 py-1.5 text-[10px] font-semibold uppercase tracking-widest text-white/40 border-b border-white/10 mb-1">
+              Select Destination
+            </div>
+            <div class="max-h-64 overflow-y-auto no-scrollbar space-y-0.5 text-xs">
+              <button type="button" onclick="selectHeaderLocation('Jaipur')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-luxPink/20 hover:text-luxPink transition flex items-center justify-between"><span>Jaipur</span><i data-lucide="map-pin" class="w-3 h-3 opacity-50"></i></button>
+              <button type="button" onclick="selectHeaderLocation('Goa')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-luxPink/20 hover:text-luxPink transition flex items-center justify-between"><span>Goa</span><i data-lucide="map-pin" class="w-3 h-3 opacity-50"></i></button>
+              <button type="button" onclick="selectHeaderLocation('Varanasi')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-luxPink/20 hover:text-luxPink transition flex items-center justify-between"><span>Varanasi</span><i data-lucide="map-pin" class="w-3 h-3 opacity-50"></i></button>
+              <button type="button" onclick="selectHeaderLocation('Kerala')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-luxPink/20 hover:text-luxPink transition flex items-center justify-between"><span>Kerala</span><i data-lucide="map-pin" class="w-3 h-3 opacity-50"></i></button>
+              <button type="button" onclick="selectHeaderLocation('Leh-Ladakh')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-luxPink/20 hover:text-luxPink transition flex items-center justify-between"><span>Leh-Ladakh</span><i data-lucide="map-pin" class="w-3 h-3 opacity-50"></i></button>
+              <button type="button" onclick="selectHeaderLocation('Manali & Shimla')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-luxPink/20 hover:text-luxPink transition flex items-center justify-between"><span>Manali & Shimla</span><i data-lucide="map-pin" class="w-3 h-3 opacity-50"></i></button>
+              <button type="button" onclick="selectHeaderLocation('Agra')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-luxPink/20 hover:text-luxPink transition flex items-center justify-between"><span>Agra</span><i data-lucide="map-pin" class="w-3 h-3 opacity-50"></i></button>
+              <button type="button" onclick="selectHeaderLocation('Udaipur')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-luxPink/20 hover:text-luxPink transition flex items-center justify-between"><span>Udaipur</span><i data-lucide="map-pin" class="w-3 h-3 opacity-50"></i></button>
+              <button type="button" onclick="selectHeaderLocation('Andaman and Nicobar Islands')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-luxPink/20 hover:text-luxPink transition flex items-center justify-between"><span>Andaman and Nicobar Islands</span><i data-lucide="map-pin" class="w-3 h-3 opacity-50"></i></button>
+              <button type="button" onclick="selectHeaderLocation('Darjeeling')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-luxPink/20 hover:text-luxPink transition flex items-center justify-between"><span>Darjeeling</span><i data-lucide="map-pin" class="w-3 h-3 opacity-50"></i></button>
+            </div>
+          </div>
+        </div>
+
+        <span class="text-white/20">|</span>
+
+        <!-- 2. CHECK-IN CHECK-OUT BUTTON -->
+        <div class="relative">
+          <button type="button" onclick="toggleHeaderDropdown('headerDateMenu', event)" 
+                  class="font-medium text-white/80 hover:text-luxPink px-2 py-1 rounded-full hover:bg-white/5 transition flex items-center gap-1.5 focus:outline-none whitespace-nowrap">
+            <span id="headerDateText">check-in check-out</span>
+            <i data-lucide="calendar" class="w-3 h-3 text-luxPink"></i>
+          </button>
+
+          <!-- Calendar Date Picker Popup -->
+          <div id="headerDateMenu" onclick="event.stopPropagation()" 
+               class="header-dropdown hidden absolute left-1/2 -translate-x-1/2 top-11 w-80 bg-stone-950/95 backdrop-blur-2xl border border-white/15 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.7)] p-4 z-50">
+            
+            <!-- Month Header -->
+            <div class="flex items-center justify-between mb-3 pb-2 border-b border-white/10">
+              <button type="button" onclick="changeHeaderCalMonth(-1)" class="p-1 rounded-lg hover:bg-white/10 text-white/70 hover:text-white">
+                <i data-lucide="chevron-left" class="w-4 h-4"></i>
+              </button>
+              <span id="headerCalMonthLabel" class="text-xs font-semibold tracking-wider uppercase text-white">July 2026</span>
+              <button type="button" onclick="changeHeaderCalMonth(1)" class="p-1 rounded-lg hover:bg-white/10 text-white/70 hover:text-white">
+                <i data-lucide="chevron-right" class="w-4 h-4"></i>
+              </button>
+            </div>
+
+            <!-- Days of Week -->
+            <div class="grid grid-cols-7 text-center text-[10px] font-semibold text-white/40 mb-1">
+              <span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span>
+            </div>
+
+            <!-- Interactive Calendar Days Grid -->
+            <div id="headerCalGrid" class="grid grid-cols-7 text-center text-xs gap-1 mb-4"></div>
+
+            <!-- Direct Check-in / Check-out Inputs (Synced) -->
+            <div class="grid grid-cols-2 gap-2 pt-3 border-t border-white/10 text-[11px]">
+              <div>
+                <label class="block text-white/40 mb-1">Check-in</label>
+                <input type="date" id="headerCheckInInput" value="2026-07-25" onchange="syncHeaderDateInputs()"
+                       class="w-full bg-white/10 border border-white/15 rounded-lg px-2 py-1.5 text-white text-[11px] focus:outline-none focus:border-luxPink" />
+              </div>
+              <div>
+                <label class="block text-white/40 mb-1">Check-out</label>
+                <input type="date" id="headerCheckOutInput" value="2026-07-29" onchange="syncHeaderDateInputs()"
+                       class="w-full bg-white/10 border border-white/15 rounded-lg px-2 py-1.5 text-white text-[11px] focus:outline-none focus:border-luxPink" />
+              </div>
+            </div>
+
+            <button type="button" onclick="updateHeaderDateDisplay(); closeAllHeaderDropdowns();" 
+                    class="w-full mt-3 bg-luxPink hover:bg-luxPinkHover text-white font-semibold py-2 rounded-xl text-xs transition shadow-[0_0_15px_rgba(225,75,110,0.4)]">
+              Apply Dates
+            </button>
+          </div>
+        </div>
+
+        <span class="text-white/20">|</span>
+
+        <!-- 3. GUEST NO. BUTTON -->
+        <div class="relative">
+          <button type="button" onclick="toggleHeaderDropdown('headerGuestsMenu', event)" 
+                  class="font-medium text-white/80 hover:text-luxPink px-2 py-1 rounded-full hover:bg-white/5 transition flex items-center gap-1.5 focus:outline-none whitespace-nowrap">
+            <span id="headerGuestsText">guest no.</span>
+            <i data-lucide="users" class="w-3 h-3 text-luxPink"></i>
+          </button>
+
+          <!-- Guests Counter Dropdown -->
+          <div id="headerGuestsMenu" onclick="event.stopPropagation()" 
+               class="header-dropdown hidden absolute right-0 top-11 w-64 bg-stone-950/95 backdrop-blur-2xl border border-white/15 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.7)] p-4 z-50 space-y-4">
+            
+            <div class="flex items-center justify-between">
+              <div>
+                <p class="text-xs font-semibold text-white">Adults</p>
+                <p class="text-[10px] text-white/40">Ages 13 or above</p>
+              </div>
+              <div class="flex items-center gap-2.5">
+                <button type="button" onclick="changeHeaderGuests('adults', -1)" class="w-7 h-7 rounded-full border border-white/20 bg-white/5 hover:border-luxPink hover:text-luxPink flex items-center justify-center text-sm transition">-</button>
+                <span id="headerAdultsVal" class="text-xs font-bold w-4 text-center">2</span>
+                <button type="button" onclick="changeHeaderGuests('adults', 1)" class="w-7 h-7 rounded-full border border-white/20 bg-white/5 hover:border-luxPink hover:text-luxPink flex items-center justify-center text-sm transition">+</button>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between">
+              <div>
+                <p class="text-xs font-semibold text-white">Children</p>
+                <p class="text-[10px] text-white/40">Ages 2 - 12</p>
+              </div>
+              <div class="flex items-center gap-2.5">
+                <button type="button" onclick="changeHeaderGuests('children', -1)" class="w-7 h-7 rounded-full border border-white/20 bg-white/5 hover:border-luxPink hover:text-luxPink flex items-center justify-center text-sm transition">-</button>
+                <span id="headerChildrenVal" class="text-xs font-bold w-4 text-center">0</span>
+                <button type="button" onclick="changeHeaderGuests('children', 1)" class="w-7 h-7 rounded-full border border-white/20 bg-white/5 hover:border-luxPink hover:text-luxPink flex items-center justify-center text-sm transition">+</button>
+              </div>
+            </div>
+
+            <button type="button" onclick="closeAllHeaderDropdowns()" 
+                    class="w-full bg-luxPink hover:bg-luxPinkHover text-white font-semibold py-2 rounded-xl text-xs transition shadow-[0_0_15px_rgba(225,75,110,0.4)]">
+              Done
+            </button>
+          </div>
+        </div>
+
+        <!-- Search Action Button -->
+        <button type="button" onclick="triggerHeaderSearch()" class="w-8 h-8 rounded-full bg-luxPink text-white flex items-center justify-center shadow-[0_0_15px_rgba(225,75,110,0.6)] hover:bg-luxPinkHover transition shrink-0">
+          <i data-lucide="search" class="w-3.5 h-3.5"></i>
+        </button>
+      </div>
+
+      <!-- Main Navigation Links -->
+      <nav class="hidden md:flex items-center bg-white/5 border border-white/10 rounded-full px-2 py-1 space-x-1 text-xs font-medium text-white/80">
+        <button onclick="showPage('home')" class="nav-link text-luxPink font-semibold px-3.5 py-1.5 rounded-full hover:bg-white/10 transition" data-nav="home">Home</button>
+        <button onclick="showPage('listing')" class="nav-link px-3.5 py-1.5 rounded-full hover:bg-white/10 hover:text-white transition flex items-center gap-1" data-nav="listing">
+          Explore Villas <i data-lucide="chevron-down" class="w-3.5 h-3.5"></i>
+        </button>
+        <button onclick="showPage('detail')" class="nav-link px-3.5 py-1.5 rounded-full hover:bg-white/10 hover:text-white transition" data-nav="detail">Seasalt Prive</button>
+        <button onclick="showPage('about')" class="nav-link px-3.5 py-1.5 rounded-full hover:bg-white/10 hover:text-white transition" data-nav="about">About Us</button>
+        <button onclick="showPage('blogs')" class="nav-link px-3.5 py-1.5 rounded-full hover:bg-white/10 hover:text-white transition" data-nav="blogs">Blogs</button>
+      </nav>
+
+      <!-- Auth & Get In Touch Actions -->
+      <div class="flex items-center gap-3 shrink-0">
+        <button onclick="openAuthModal('signin')" class="text-xs font-medium text-white/80 hover:text-luxPink px-2 py-1 transition">Login</button>
+        <span class="text-white/20 hidden sm:inline">|</span>
+        <button onclick="openAuthModal('signup')" class="hidden sm:inline text-xs font-medium text-white/80 hover:text-luxPink px-2 py-1 transition">Register</button>
+        <button onclick="openWhatsApp('Hi SEASALT Hospitality! I would like to get in touch regarding a villa booking.')" 
+                class="bg-gradient-to-r from-luxPink to-[#ff6b8b] text-white text-xs font-semibold px-5 py-2.5 rounded-full shadow-[0_0_20px_rgba(225,75,110,0.5)] hover:shadow-[0_0_30px_rgba(225,75,110,0.8)] hover:scale-105 transition-all duration-300 flex items-center gap-1.5">
+          Get in touch <i data-lucide="chevron-down" class="w-3.5 h-3.5"></i>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+
+  <!-- ========================================================= -->
+  <!-- PAGE 1: HOME PAGE                                         -->
+  <!-- ========================================================= -->
+  <main id="page-home" class="page-view block">
+
+    <!-- HERO SECTION WITH VIDEO + INTERACTIVE SEARCH DROPDOWNS -->
+    <section class="relative min-h-[540px] lg:min-h-[600px] flex flex-col items-center justify-between py-8 px-4 bg-stone-900 overflow-visible">
+      
+      <!-- Background Video -->
+      <div class="absolute inset-0 overflow-hidden z-0">
+        <video autoplay loop muted playsinline poster="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=1920&q=85" class="w-full h-full object-cover opacity-80">
+          <source src="hero.mp4" type="video/mp4" />
+          <source src="images/hero.mp4" type="video/mp4" />
+        </video>
+        <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/15 to-black/50"></div>
+      </div>
+
+      <!-- Top Floating Promo Pill -->
+      <div class="relative z-20 bg-black/65 backdrop-blur-md text-white text-[11px] sm:text-xs px-5 py-2 rounded-full border border-white/15 flex items-center gap-2 shadow-lg">
+        <span>Flat 10% off! Sale is going live tonight at 12 pm.</span>
+        <button onclick="copyCoupon('SEASALT10')" class="text-[#FF8A65] font-semibold underline hover:text-white">Use Code : SEASALT10</button>
+      </div>
+
+      <!-- Center Hero Heading -->
+      <div class="relative z-20 text-center text-white my-auto py-8 max-w-3xl">
+        <p class="uppercase tracking-[0.28em] text-xs text-white/90 mb-2">Welcome to SEASALT Hospitality</p>
+        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-semibold leading-tight">
+          Curated Luxury <span class="script-accent font-normal">Villas</span> Across India
+        </h1>
+      </div>
+
+      <!-- Main Floating Search Bar + Interactive Popovers -->
+      <div class="relative z-30 w-full max-w-4xl mx-auto mb-2">
+        <div class="bg-white rounded-full shadow-2xl p-2 pl-6 pr-2.5 flex flex-col md:flex-row items-center justify-between gap-2 border border-gray-100">
+          
+          <!-- Location Trigger -->
+          <div class="w-full md:w-1/3 py-2 pr-4 md:border-r border-gray-200 cursor-pointer text-left" onclick="toggleSearchPopover('locationPopover', event)">
+            <label class="block text-[11px] font-semibold text-gray-900 cursor-pointer">Location</label>
+            <input id="searchLocationInput" type="text" readonly value="Select Destination" class="w-full text-xs text-gray-500 focus:outline-none cursor-pointer bg-transparent" />
+          </div>
+
+          <!-- Date Trigger -->
+          <div class="w-full md:w-1/3 py-2 px-0 md:px-4 md:border-r border-gray-200 cursor-pointer text-left" onclick="toggleSearchPopover('datePopover', event)">
+            <label class="block text-[11px] font-semibold text-gray-900 cursor-pointer">Date</label>
+            <input id="searchDateInput" type="text" readonly value="Add Dates" class="w-full text-xs text-gray-500 focus:outline-none cursor-pointer bg-transparent" />
+          </div>
+
+          <!-- Guests Trigger -->
+          <div class="w-full md:w-1/3 py-2 pl-0 md:pl-4 flex items-center justify-between cursor-pointer text-left" onclick="toggleSearchPopover('guestsPopover', event)">
+            <div>
+              <label class="block text-[11px] font-semibold text-gray-900 cursor-pointer">Guests</label>
+              <input id="searchGuestsInput" type="text" readonly value="Add Guests" class="w-full text-xs text-gray-500 focus:outline-none cursor-pointer bg-transparent" />
+            </div>
+            <button onclick="event.stopPropagation(); showPage('listing')" class="w-12 h-12 rounded-full bg-luxPink hover:bg-luxPinkHover text-white flex items-center justify-center shadow-md transition shrink-0">
+              <i data-lucide="search" class="w-5 h-5"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Helper Concierge Sub-Pill Under Search Bar -->
+        <div class="bg-white/95 backdrop-blur-md rounded-b-2xl max-w-xl mx-auto px-5 py-2 shadow-md flex items-center justify-center gap-3 text-[11px] text-gray-600 border-x border-b border-gray-100 -mt-1">
+          <span>We're here to help you find the perfect vacation stay for an unforgettable getaway.</span>
+          <button onclick="openWhatsApp('Hi Sanket! Can you help me find a luxury villa with SEASALT Hospitality?')" class="w-6 h-6 rounded-full bg-green-50 text-green-600 flex items-center justify-center hover:bg-green-100 transition" title="Chat on WhatsApp">
+            <i data-lucide="message-circle" class="w-3.5 h-3.5"></i>
+          </button>
+          <a href="tel:+919399344077" class="w-6 h-6 rounded-full bg-teal-50 text-luxTeal flex items-center justify-center hover:bg-teal-100 transition" title="Call Us">
+            <i data-lucide="phone" class="w-3.5 h-3.5"></i>
+          </a>
+        </div>
+
+        <!-- POPOVER 1: LOCATION DROPDOWN -->
+        <div id="locationPopover" onclick="event.stopPropagation()" class="search-popover hidden absolute left-0 top-20 bg-white rounded-3xl shadow-2xl border border-gray-100 p-5 w-72 z-50">
+          <p class="text-[11px] font-medium text-gray-400 mb-2">Recent Search</p>
+          <div onclick="selectDestination('Goa')" class="flex items-center gap-3 p-2 rounded-xl hover:bg-gray-50 cursor-pointer border-b border-gray-100 pb-3 mb-3">
+            <div class="w-8 h-8 rounded-lg border border-gray-200 bg-gray-50 flex items-center justify-center text-gray-500">
+              <i data-lucide="clock" class="w-4 h-4"></i>
+            </div>
+            <span class="text-xs font-medium text-gray-800">Goa</span>
+          </div>
+          <p class="text-[11px] font-medium text-gray-400 mb-2">Suggested Destination</p>
+          <div class="space-y-1.5 max-h-56 overflow-y-auto no-scrollbar">
+            <div onclick="selectDestination('Jaipur')" class="flex items-center gap-3 p-2 rounded-xl hover:bg-gray-50 cursor-pointer">
+              <div class="w-8 h-8 rounded-lg border border-gray-200 bg-gray-50 flex items-center justify-center text-gray-500"><i data-lucide="landmark" class="w-4 h-4"></i></div>
+              <span class="text-xs font-medium text-gray-800">Jaipur</span>
+            </div>
+            <div onclick="selectDestination('Udaipur')" class="flex items-center gap-3 p-2 rounded-xl hover:bg-gray-50 cursor-pointer">
+              <div class="w-8 h-8 rounded-lg border border-gray-200 bg-gray-50 flex items-center justify-center text-gray-500"><i data-lucide="sparkles" class="w-4 h-4"></i></div>
+              <span class="text-xs font-medium text-gray-800">Udaipur</span>
+            </div>
+            <div onclick="selectDestination('Kerala')" class="flex items-center gap-3 p-2 rounded-xl hover:bg-gray-50 cursor-pointer">
+              <div class="w-8 h-8 rounded-lg border border-gray-200 bg-gray-50 flex items-center justify-center text-gray-500"><i data-lucide="palmtree" class="w-4 h-4"></i></div>
+              <span class="text-xs font-medium text-gray-800">Kerala</span>
+            </div>
+            <div onclick="selectDestination('Manali & Shimla')" class="flex items-center gap-3 p-2 rounded-xl hover:bg-gray-50 cursor-pointer">
+              <div class="w-8 h-8 rounded-lg border border-gray-200 bg-gray-50 flex items-center justify-center text-gray-500"><i data-lucide="snowflake" class="w-4 h-4"></i></div>
+              <span class="text-xs font-medium text-gray-800">Manali & Shimla</span>
+            </div>
+            <div onclick="selectDestination('Leh-Ladakh')" class="flex items-center gap-3 p-2 rounded-xl hover:bg-gray-50 cursor-pointer">
+              <div class="w-8 h-8 rounded-lg border border-gray-200 bg-gray-50 flex items-center justify-center text-gray-500"><i data-lucide="mountain" class="w-4 h-4"></i></div>
+              <span class="text-xs font-medium text-gray-800">Leh-Ladakh</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- POPOVER 2: DUAL CALENDAR DROPDOWN -->
+        <div id="datePopover" onclick="event.stopPropagation()" class="search-popover hidden absolute left-0 md:left-24 top-20 bg-white rounded-3xl shadow-2xl border border-gray-100 p-6 w-full max-w-xl z-50">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+            <!-- July 2026 -->
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <button class="text-gray-400 hover:text-black"><i data-lucide="chevron-left" class="w-4 h-4"></i></button>
+                <span class="text-xs font-semibold text-gray-800">July 2026</span>
+                <span></span>
+              </div>
+              <div class="grid grid-cols-7 text-center text-[10px] font-semibold text-gray-400 mb-2">
+                <span>S</span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span>
+              </div>
+              <div class="grid grid-cols-7 text-center text-xs gap-y-2 text-gray-600">
+                <span></span><span></span><span></span>
+                <button onclick="selectDate('18 July - 22 July 2026')" class="py-1 hover:bg-gray-100 rounded-full">1</button>
+                <button onclick="selectDate('18 July - 22 July 2026')" class="py-1 hover:bg-gray-100 rounded-full">2</button>
+                <button onclick="selectDate('18 July - 22 July 2026')" class="py-1 hover:bg-gray-100 rounded-full">3</button>
+                <button onclick="selectDate('18 July - 22 July 2026')" class="py-1 hover:bg-gray-100 rounded-full">4</button>
+                <button class="py-1">5</button><button class="py-1">6</button><button class="py-1">7</button><button class="py-1">8</button><button class="py-1">9</button><button class="py-1">10</button><button class="py-1">11</button>
+                <button class="py-1">12</button><button class="py-1">13</button><button class="py-1">14</button><button class="py-1">15</button><button class="py-1">16</button><button class="py-1">17</button>
+                <button onclick="selectDate('18 July - 22 July 2026')" class="py-1 border border-gray-900 font-semibold text-gray-900 rounded-full">18</button>
+                <button class="py-1">19</button><button class="py-1">20</button><button class="py-1">21</button><button class="py-1">22</button><button class="py-1">23</button><button class="py-1">24</button><button class="py-1">25</button>
+                <button class="py-1">26</button><button class="py-1">27</button><button class="py-1">28</button><button class="py-1">29</button><button class="py-1">30</button><button class="py-1">31</button>
+              </div>
+            </div>
+            <!-- August 2026 -->
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span></span>
+                <span class="text-xs font-semibold text-gray-800">August 2026</span>
+                <button class="text-gray-400 hover:text-black"><i data-lucide="chevron-right" class="w-4 h-4"></i></button>
+              </div>
+              <div class="grid grid-cols-7 text-center text-[10px] font-semibold text-gray-400 mb-2">
+                <span>S</span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span>
+              </div>
+              <div class="grid grid-cols-7 text-center text-xs gap-y-2 text-gray-600">
+                <span></span><span></span><span></span>
+                <button class="py-1">1</button><button class="py-1">2</button><button class="py-1">3</button><button class="py-1">4</button>
+                <button class="py-1">5</button><button class="py-1">6</button><button class="py-1">7</button><button class="py-1">8</button><button class="py-1">9</button><button class="py-1">10</button><button class="py-1">11</button>
+                <button class="py-1">12</button><button class="py-1">13</button><button class="py-1">14</button><button class="py-1">15</button><button class="py-1">16</button><button class="py-1">17</button>
+                <button onclick="selectDate('18 Aug - 22 Aug 2026')" class="py-1 border border-gray-900 font-semibold text-gray-900 rounded-full">18</button>
+                <button class="py-1">19</button><button class="py-1">20</button><button class="py-1">21</button><button class="py-1">22</button><button class="py-1">23</button><button class="py-1">24</button><button class="py-1">25</button>
+                <button class="py-1">26</button><button class="py-1">27</button><button class="py-1">28</button><button class="py-1">29</button><button class="py-1">30</button><button class="py-1">31</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- POPOVER 3: GUESTS COUNTER DROPDOWN -->
+        <div id="guestsPopover" onclick="event.stopPropagation()" class="search-popover hidden absolute right-0 top-20 bg-white rounded-3xl shadow-2xl border border-gray-100 p-6 w-80 z-50 space-y-5">
+          <div class="flex items-center justify-between">
+            <div>
+              <p class="text-xs font-semibold text-gray-900">Adults</p>
+              <p class="text-[11px] text-gray-400">Ages 13 or above</p>
+            </div>
+            <div class="flex items-center gap-3">
+              <button onclick="updateGuestCount('adults', -1)" class="w-7 h-7 rounded-full border border-gray-200 flex items-center justify-center text-gray-500 hover:border-black">-</button>
+              <span id="adultsCount" class="text-xs font-semibold w-3 text-center">2</span>
+              <button onclick="updateGuestCount('adults', 1)" class="w-7 h-7 rounded-full border border-gray-200 flex items-center justify-center text-gray-500 hover:border-black">+</button>
+            </div>
+          </div>
+          <div class="flex items-center justify-between">
+            <div>
+              <p class="text-xs font-semibold text-gray-900">Children</p>
+              <p class="text-[11px] text-gray-400">Ages 2-12</p>
+            </div>
+            <div class="flex items-center gap-3">
+              <button onclick="updateGuestCount('children', -1)" class="w-7 h-7 rounded-full border border-gray-200 flex items-center justify-center text-gray-500 hover:border-black">-</button>
+              <span id="childrenCount" class="text-xs font-semibold w-3 text-center">0</span>
+              <button onclick="updateGuestCount('children', 1)" class="w-7 h-7 rounded-full border border-gray-200 flex items-center justify-center text-gray-500 hover:border-black">+</button>
+            </div>
+          </div>
+          <div class="flex items-center justify-between">
+            <div>
+              <p class="text-xs font-semibold text-gray-900">Pets</p>
+              <p class="text-[11px] text-gray-400">Bringing a service animal?</p>
+            </div>
+            <div class="flex items-center gap-3">
+              <button onclick="updateGuestCount('pets', -1)" class="w-7 h-7 rounded-full border border-gray-200 flex items-center justify-center text-gray-500 hover:border-black">-</button>
+              <span id="petsCount" class="text-xs font-semibold w-3 text-center">0</span>
+              <button onclick="updateGuestCount('pets', 1)" class="w-7 h-7 rounded-full border border-gray-200 flex items-center justify-center text-gray-500 hover:border-black">+</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION: CHOOSE YOUR FAVORITE LOCATIONS -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-12">
+      <div class="flex items-center justify-between mb-10">
+        <h2 class="text-2xl sm:text-4xl font-semibold">
+          Choose Your Favorite <span class="script-accent font-normal">Locations</span>
+        </h2>
+        <div class="flex items-center gap-2">
+          <button class="w-9 h-9 rounded-full bg-pink-50 text-luxPink flex items-center justify-center hover:bg-luxPink hover:text-white transition">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i>
+          </button>
+          <button class="w-9 h-9 rounded-full bg-pink-50 text-luxPink flex items-center justify-center hover:bg-luxPink hover:text-white transition">
+            <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 py-4 px-2">
+        <div onclick="filterByDestination('Leh-Ladakh')" class="tilt-left relative h-64 sm:h-72 rounded-2xl overflow-hidden shadow-lg cursor-pointer group">
+          <img src="https://images.unsplash.com/photo-1581793745862-99fde7fa73d2?auto=format&fit=crop&w=800&q=80" alt="Ladakh" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+          <span class="absolute bottom-5 inset-x-0 text-center text-white font-semibold tracking-wider text-sm sm:text-base uppercase">LADDAKH</span>
+        </div>
+
+        <div onclick="filterByDestination('Goa')" class="tilt-right relative h-64 sm:h-72 rounded-2xl overflow-hidden shadow-lg cursor-pointer group">
+          <img src="https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=800&q=80" alt="Goa" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+          <span class="absolute bottom-5 inset-x-0 text-center text-white font-semibold tracking-wider text-sm sm:text-base uppercase">GOA</span>
+        </div>
+
+        <div onclick="filterByDestination('Rishikesh')" class="tilt-left relative h-64 sm:h-72 rounded-2xl overflow-hidden shadow-lg cursor-pointer group">
+          <img src="https://images.unsplash.com/photo-1591018533202-1219129c195f?auto=format&fit=crop&w=800&q=80" alt="Rishikesh" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+          <span class="absolute bottom-5 inset-x-0 text-center text-white font-semibold tracking-wider text-sm sm:text-base uppercase">RISHIKESH</span>
+        </div>
+
+        <div onclick="filterByDestination('Meghalaya')" class="tilt-right relative h-64 sm:h-72 rounded-2xl overflow-hidden shadow-lg cursor-pointer group">
+          <img src="https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=800&q=80" alt="Meghalaya" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+          <span class="absolute bottom-5 inset-x-0 text-center text-white font-semibold tracking-wider text-sm sm:text-base uppercase">MEGHALAYA</span>
+        </div>
+      </div>
+
+      <div class="flex justify-center items-center gap-1.5 mt-6">
+        <span class="w-8 h-1.5 rounded-full bg-luxPink"></span>
+        <span class="w-8 h-1.5 rounded-full bg-gray-200"></span>
+        <span class="w-8 h-1.5 rounded-full bg-gray-200"></span>
+      </div>
+    </section>
+
+    <!-- SECTION: TOP RATED VILLAS -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="flex items-center justify-between mb-8">
+        <h2 class="text-2xl sm:text-4xl font-semibold">
+          Top Rated <span class="script-accent font-normal">Villas</span>
+        </h2>
+        <div class="flex items-center gap-2">
+          <button class="w-9 h-9 rounded-full bg-pink-50 text-luxPink flex items-center justify-center hover:bg-luxPink hover:text-white transition">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i>
+          </button>
+          <button class="w-9 h-9 rounded-full bg-pink-50 text-luxPink flex items-center justify-center hover:bg-luxPink hover:text-white transition">
+            <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+
+      <div id="homeTopVillasGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+
+      <div class="flex justify-center items-center gap-1.5 mt-8">
+        <span class="w-8 h-1.5 rounded-full bg-luxPink"></span>
+        <span class="w-8 h-1.5 rounded-full bg-gray-200"></span>
+        <span class="w-8 h-1.5 rounded-full bg-gray-200"></span>
+      </div>
+    </section>
+
+    <!-- SECTION: TEAL BRAND STATEMENT BANNER -->
+    <section class="bg-luxTeal text-white py-20 px-4">
+      <div class="max-w-5xl mx-auto text-center">
+        <p class="text-xl sm:text-3xl lg:text-[34px] font-normal leading-relaxed sm:leading-[1.45]">
+          At SEASALT Hospitality, we understand the importance of finding the perfect
+          <span class="wavy-underline font-medium">accommodation</span> for your
+          <span class="wavy-underline font-medium">dream vacation</span>. With a passion for hospitality and a commitment to excellence, we strive to curate a collection of the finest hand-picked
+          <span class="wavy-underline font-medium">villas</span> across India, ensuring that your stay is nothing short of
+          <span class="wavy-underline font-medium">extraordinary</span>.
+        </p>
+      </div>
+    </section>
+
+    <!-- SECTION: EXCLUSIVE VILLA OFFERS -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <h2 class="text-2xl sm:text-4xl font-semibold text-center mb-6">
+        Exclusive Villa <span class="script-accent font-normal">Offers</span>
+      </h2>
+
+      <div class="flex justify-center space-x-6 text-xs font-medium border-b border-gray-200 max-w-xs mx-auto mb-10">
+        <button class="pb-2.5 border-b-2 border-gray-900 text-gray-900 font-semibold">All Offers</button>
+        <button class="pb-2.5 text-gray-500 hover:text-gray-900">Bank Offers</button>
+        <button class="pb-2.5 text-gray-500 hover:text-gray-900">Seasalt Offers</button>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Card 1: HSBC -->
+        <div class="border border-gray-200 rounded-2xl p-6 bg-white shadow-sm hover:shadow-md transition flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <div class="flex items-center gap-2">
+                <span class="inline-block w-5 h-3 bg-red-600 rounded-sm"></span>
+                <span class="font-bold text-sm tracking-wide">HSBC</span>
+              </div>
+              <span class="bg-pink-50 text-luxPink text-[10px] font-semibold px-2.5 py-1 rounded-full">Bank Offer</span>
+            </div>
+            <p class="text-xs text-gray-700 leading-relaxed mb-3">
+              Get 11% off (up to ₹5000) on your SEASALT Hospitality booking when you pay with an HSBC TravelOne Credit Card.
+            </p>
+            <p class="text-[10px] text-gray-400 mb-4">*T&C's apply</p>
+          </div>
+          <div class="flex items-center justify-between gap-2 pt-3 border-t border-dashed border-gray-200">
+            <span class="border border-dashed border-gray-300 rounded-lg px-3 py-2 text-xs font-mono text-gray-600 tracking-wider">HSBCTRAVEL</span>
+            <button onclick="copyCoupon('HSBCTRAVEL')" class="bg-gray-900 hover:bg-luxPink text-white text-xs font-medium px-4 py-2 rounded-lg transition">
+              Copy Code
+            </button>
+          </div>
+        </div>
+
+        <!-- Card 2: HDFC -->
+        <div class="border border-gray-200 rounded-2xl p-6 bg-white shadow-sm hover:shadow-md transition flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <div class="flex items-center gap-2">
+                <span class="inline-block w-4 h-4 bg-blue-800 rounded-sm"></span>
+                <span class="font-bold text-sm tracking-wide text-blue-900">HDFC BANK</span>
+              </div>
+              <span class="bg-pink-50 text-luxPink text-[10px] font-semibold px-2.5 py-1 rounded-full">Bank Offer</span>
+            </div>
+            <p class="text-xs text-gray-700 leading-relaxed mb-3">
+              Get 5% off, up to ₹2500, on select HDFC cards for EMI transactions. Offer valid on select HDFC Credit Cards.
+            </p>
+            <p class="text-[10px] text-gray-400 mb-4">*T&C's apply</p>
+          </div>
+          <div class="flex items-center justify-between gap-2 pt-3 border-t border-dashed border-gray-200">
+            <span class="border border-dashed border-gray-300 rounded-lg px-3 py-2 text-xs font-mono text-gray-600 tracking-wider">HDFCEMICC</span>
+            <button onclick="copyCoupon('HDFCEMICC')" class="bg-gray-900 hover:bg-luxPink text-white text-xs font-medium px-4 py-2 rounded-lg transition">
+              Copy Code
+            </button>
+          </div>
+        </div>
+
+        <!-- Card 3: SEASALT50 -->
+        <div class="border border-gray-200 rounded-2xl p-6 bg-white shadow-sm hover:shadow-md transition flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <div class="flex items-center gap-2">
+                <span class="font-bold text-sm tracking-wide">SEASALT50</span>
+              </div>
+              <span class="bg-pink-50 text-luxPink text-[10px] font-semibold px-2.5 py-1 rounded-full">Direct Offer</span>
+            </div>
+            <p class="text-xs text-gray-700 leading-relaxed mb-3">
+              Enjoy FLAT 50% OFF on 2nd night when you book our newly launched villas for your next holiday adventure.
+            </p>
+            <p class="text-[10px] text-gray-400 mb-4">*T&C's apply</p>
+          </div>
+          <div class="flex items-center justify-between gap-2 pt-3 border-t border-dashed border-gray-200">
+            <span class="border border-dashed border-gray-300 rounded-lg px-3 py-2 text-xs font-mono text-gray-600 tracking-wider">SEASALT50</span>
+            <button onclick="copyCoupon('SEASALT50')" class="bg-gray-900 hover:bg-luxPink text-white text-xs font-medium px-4 py-2 rounded-lg transition">
+              Copy Code
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: CURATED EXPERIENCES YOU CAN COUNT ON -->
+    <section class="relative py-24 px-4 text-white text-center bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1920&q=80');">
+      <div class="absolute inset-0 bg-black/35"></div>
+      <div class="relative z-10 max-w-5xl mx-auto">
+        <h2 class="text-2xl sm:text-4xl font-semibold mb-12">
+          Curated <span class="script-accent font-normal">Experiences</span> You Can Count On
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-8">
+          <div>
+            <p class="text-5xl sm:text-6xl font-bold mb-2">1200+</p>
+            <p class="text-xs sm:text-sm uppercase tracking-wider text-white/90">Handpicked Villas</p>
+          </div>
+          <div>
+            <p class="text-5xl sm:text-6xl font-bold mb-2">94%</p>
+            <p class="text-xs sm:text-sm uppercase tracking-wider text-white/90">Repeat Bookings</p>
+          </div>
+          <div>
+            <p class="text-5xl sm:text-6xl font-bold mb-2">4.5</p>
+            <p class="text-xs sm:text-sm uppercase tracking-wider text-white/90">Average Rating</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: 3 CHECKERBOARD SPLIT ROWS -->
+    <section class="max-w-7xl mx-auto">
+      
+      <!-- Row 1: The SEASALT Standards -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 items-center">
+        <div class="h-80 sm:h-[460px]">
+          <img src="https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=1100&q=80" alt="The SEASALT Standards" class="w-full h-full object-cover" />
+        </div>
+        <div class="p-8 sm:p-14 lg:p-16">
+          <h2 class="text-2xl sm:text-4xl font-semibold mb-3">
+            The SEASALT <span class="script-accent font-normal">Standards</span>
+          </h2>
+          <p class="text-xs sm:text-sm text-gray-500 mb-6 leading-relaxed">
+            Discover thoughtfully curated features that make every stay seamless, comfortable, and unforgettable.
+          </p>
+          <div class="flex flex-wrap gap-2.5 mb-8">
+            <span class="bg-gray-100 text-gray-700 text-xs px-3.5 py-1.5 rounded-lg">Private Pool</span>
+            <span class="bg-gray-100 text-gray-700 text-xs px-3.5 py-1.5 rounded-lg">In-house Chef</span>
+            <span class="bg-gray-100 text-gray-700 text-xs px-3.5 py-1.5 rounded-lg">Butler Service</span>
+            <span class="bg-gray-100 text-gray-700 text-xs px-3.5 py-1.5 rounded-lg">Caretaker Onsite</span>
+            <span class="bg-gray-100 text-gray-700 text-xs px-3.5 py-1.5 rounded-lg">Local Experiences</span>
+            <span class="bg-gray-100 text-gray-700 text-xs px-3.5 py-1.5 rounded-lg">Games & Recreation</span>
+            <span class="bg-gray-100 text-gray-700 text-xs px-3.5 py-1.5 rounded-lg">Green Open Spaces</span>
+            <span class="bg-gray-100 text-gray-700 text-xs px-3.5 py-1.5 rounded-lg">Personalised Celebrations</span>
+          </div>
+          <button onclick="showPage('listing')" class="bg-luxPink hover:bg-luxPinkHover text-white text-xs font-medium px-6 py-3 rounded-full inline-flex items-center gap-2 transition">
+            Discover <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Row 2: Find Your Perfect Stay -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 items-center">
+        <div class="p-8 sm:p-14 lg:p-16 order-2 lg:order-1">
+          <h2 class="text-2xl sm:text-4xl font-semibold mb-3">
+            Find Your <span class="script-accent font-normal">Perfect</span> Stay
+          </h2>
+          <p class="text-xs sm:text-sm text-gray-500 mb-8 leading-relaxed">
+            From serene retreats to lavish escapes, discover luxury accommodations tailored to every journey.
+          </p>
+          <div class="space-y-4">
+            <details class="group border-b border-gray-200 pb-4" open>
+              <summary class="flex items-center justify-between cursor-pointer text-sm font-semibold text-gray-800 list-none">
+                <span>Seasalt Prive</span>
+                <i data-lucide="chevron-down" class="w-4 h-4 text-gray-400 group-open:rotate-180 transition"></i>
+              </summary>
+              <p class="text-xs text-gray-500 mt-2 leading-relaxed">
+                Ultra-exclusive architectural estates and heritage mansions with private butlers, heated pools, and bespoke culinary curation.
+              </p>
+            </details>
+            <details class="group border-b border-gray-200 pb-4">
+              <summary class="flex items-center justify-between cursor-pointer text-sm font-semibold text-gray-800 list-none">
+                <span>Seasalt Villas</span>
+                <i data-lucide="chevron-down" class="w-4 h-4 text-gray-400 group-open:rotate-180 transition"></i>
+              </summary>
+              <p class="text-xs text-gray-500 mt-2 leading-relaxed">
+                Handpicked holiday homes across Goa, Lonavla, Alibaug, and Coorg designed for warm family getaways and group celebrations.
+              </p>
+            </details>
+            <details class="group border-b border-gray-200 pb-4">
+              <summary class="flex items-center justify-between cursor-pointer text-sm font-semibold text-gray-800 list-none">
+                <span>Seasalt Boutique Suites</span>
+                <i data-lucide="chevron-down" class="w-4 h-4 text-gray-400 group-open:rotate-180 transition"></i>
+              </summary>
+              <p class="text-xs text-gray-500 mt-2 leading-relaxed">
+                Boutique suites and experiential resort rooms offering private pool access and curated local excursions.
+              </p>
+            </details>
+          </div>
+        </div>
+        <div class="h-80 sm:h-[460px] order-1 lg:order-2">
+          <img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=1100&q=80" alt="Find Your Perfect Stay" class="w-full h-full object-cover" />
+        </div>
+      </div>
+
+      <!-- Row 3: List Your Villa -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 items-center">
+        <div class="h-80 sm:h-[480px]">
+          <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1100&q=80" alt="List Your Villa" class="w-full h-full object-cover" />
+        </div>
+        <div class="p-8 sm:p-14 lg:p-16">
+          <h2 class="text-2xl sm:text-4xl font-semibold mb-2">
+            List Your <span class="script-accent font-normal">Villa</span>
+          </h2>
+          <p class="text-xs sm:text-sm text-gray-500 mb-6 leading-relaxed">
+            Partner with SEASALT Hospitality to maximize your property's revenue with zero operational stress.
+          </p>
+          <div class="space-y-4 mb-8">
+            <div>
+              <h4 class="text-xs font-semibold text-gray-900">Higher revenue, low maintenance</h4>
+              <p class="text-[11px] text-gray-500">Dynamic pricing, design upgrades, and a dedicated sales manager working for your villa.</p>
+            </div>
+            <div>
+              <h4 class="text-xs font-semibold text-gray-900">Access 5L+ verified travelers</h4>
+              <p class="text-[11px] text-gray-500">60% book directly with us, not through third-party platforms.</p>
+            </div>
+            <div>
+              <h4 class="text-xs font-semibold text-gray-900">Hassle-free, end-to-end management</h4>
+              <p class="text-[11px] text-gray-500">Onboarding, staff training, marketing, and F&B, all handled.</p>
+            </div>
+            <div>
+              <h4 class="text-xs font-semibold text-gray-900">Curated experiences</h4>
+              <p class="text-[11px] text-gray-500">Tailored F&B and celebratory experiences that turn guests into repeat bookers.</p>
+            </div>
+          </div>
+          <button onclick="openWhatsApp('Hi Sanket! I want to partner/list a luxury villa with SEASALT Hospitality.')" class="bg-luxPink hover:bg-luxPinkHover text-white text-xs font-medium px-6 py-3 rounded-full inline-flex items-center gap-2 transition">
+            List your villa now <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- SECTION: INSTAGRAM FLOATING COLLAGE BANNER -->
+    <section class="bg-luxTeal text-white py-20 px-4 overflow-hidden">
+      <div class="max-w-6xl mx-auto relative">
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-6 items-center">
+          <div class="relative rounded-2xl overflow-hidden h-48 sm:h-56 shadow-lg">
+            <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover" alt="IG 1"/>
+            <i data-lucide="instagram" class="w-4 h-4 text-white absolute top-3 left-3"></i>
+          </div>
+          <div class="relative rounded-2xl overflow-hidden h-48 sm:h-56 shadow-lg md:-mt-8">
+            <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover" alt="IG 2"/>
+            <i data-lucide="instagram" class="w-4 h-4 text-white absolute top-3 left-3"></i>
+          </div>
+          <div class="relative rounded-2xl overflow-hidden h-48 sm:h-56 shadow-lg hidden md:block">
+            <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover" alt="IG 3"/>
+            <i data-lucide="instagram" class="w-4 h-4 text-white absolute top-3 left-3"></i>
+          </div>
+        </div>
+
+        <div class="text-center max-w-lg mx-auto my-10">
+          <h3 class="text-2xl sm:text-3xl font-medium leading-snug mb-6">
+            Traveling is a way of being.<br/>Discover the little moments you'll cherish with us.
+          </h3>
+          <button onclick="openWhatsApp('Hi SEASALT Hospitality! I saw your collection and would love villa recommendations.')" class="bg-white text-gray-900 hover:bg-gray-100 text-xs font-semibold px-5 py-2.5 rounded-full inline-flex items-center gap-2 shadow">
+            <i data-lucide="instagram" class="w-4 h-4 text-luxPink"></i> MORE ON INSTAGRAM
+          </button>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-6 items-center">
+          <div class="relative rounded-2xl overflow-hidden h-48 sm:h-56 shadow-lg">
+            <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover" alt="IG 4"/>
+            <i data-lucide="instagram" class="w-4 h-4 text-white absolute top-3 left-3"></i>
+          </div>
+          <div class="relative rounded-2xl overflow-hidden h-48 sm:h-56 shadow-lg md:mt-6">
+            <img src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover" alt="IG 5"/>
+            <i data-lucide="instagram" class="w-4 h-4 text-white absolute top-3 left-3"></i>
+          </div>
+          <div class="relative rounded-2xl overflow-hidden h-48 sm:h-56 shadow-lg hidden md:block">
+            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover" alt="IG 6"/>
+            <i data-lucide="instagram" class="w-4 h-4 text-white absolute top-3 left-3"></i>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: SEASALT HOSPITALITY BLOGS -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4">
+        <div>
+          <h2 class="text-2xl sm:text-4xl font-semibold mb-2">
+            SEASALT Hospitality <span class="script-accent font-normal">Blogs</span>
+          </h2>
+          <p class="text-xs sm:text-sm text-gray-500 max-w-md">
+            Stories, places and moments that inspire a way of experiencing coastal and mountain escapes with calm, beauty and truth.
+          </p>
+        </div>
+        <button onclick="showPage('blogs')" class="bg-luxPink hover:bg-luxPinkHover text-white text-xs font-medium px-6 py-2.5 rounded-full inline-flex items-center gap-1.5 self-start sm:self-auto transition">
+          Discover <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 py-4">
+        <div onclick="showPage('blogs')" class="tilt-left relative h-80 rounded-2xl overflow-hidden shadow-lg cursor-pointer group">
+          <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=700&q=80" class="w-full h-full object-cover" alt="Blog 1"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent p-5 flex flex-col justify-end text-white">
+            <span class="text-[11px] text-white/80 mb-1">Goa</span>
+            <h4 class="text-sm font-medium leading-snug mb-3">Inside Goa's most private luxury pool estates curated by SEASALT Hospitality</h4>
+            <span class="inline-flex items-center gap-1 text-[11px] bg-white/20 backdrop-blur-sm border border-white/30 px-3 py-1.5 rounded-full w-fit">
+              Learn more <i data-lucide="arrow-up-right" class="w-3 h-3"></i>
+            </span>
+          </div>
+        </div>
+
+        <div onclick="showPage('blogs')" class="tilt-right relative h-80 rounded-2xl overflow-hidden shadow-lg cursor-pointer group">
+          <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=700&q=80" class="w-full h-full object-cover" alt="Blog 2"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent p-5 flex flex-col justify-end text-white">
+            <span class="text-[11px] text-white/80 mb-1">Ladakh</span>
+            <h4 class="text-sm font-medium leading-snug mb-3">Experiencing high-altitude luxury: Gastronomy and slow living in Leh-Ladakh</h4>
+            <span class="inline-flex items-center gap-1 text-[11px] bg-white/20 backdrop-blur-sm border border-white/30 px-3 py-1.5 rounded-full w-fit">
+              Learn more <i data-lucide="arrow-up-right" class="w-3 h-3"></i>
+            </span>
+          </div>
+        </div>
+
+        <div onclick="showPage('blogs')" class="tilt-left relative h-80 rounded-2xl overflow-hidden shadow-lg cursor-pointer group">
+          <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=700&q=80" class="w-full h-full object-cover" alt="Blog 3"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent p-5 flex flex-col justify-end text-white">
+            <span class="text-[11px] text-white/80 mb-1">Udaipur</span>
+            <h4 class="text-sm font-medium leading-snug mb-3">Royal heritage meets modern private pool living across Rajasthan</h4>
+            <span class="inline-flex items-center gap-1 text-[11px] bg-white/20 backdrop-blur-sm border border-white/30 px-3 py-1.5 rounded-full w-fit">
+              Learn more <i data-lucide="arrow-up-right" class="w-3 h-3"></i>
+            </span>
+          </div>
+        </div>
+
+        <div onclick="showPage('blogs')" class="tilt-right relative h-80 rounded-2xl overflow-hidden shadow-lg cursor-pointer group">
+          <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=700&q=80" class="w-full h-full object-cover" alt="Blog 4"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent p-5 flex flex-col justify-end text-white">
+            <span class="text-[11px] text-white/80 mb-1">Manali & Shimla</span>
+            <h4 class="text-sm font-medium leading-snug mb-3">Why private cedarwood estates are the ultimate mountain retreat for groups</h4>
+            <span class="inline-flex items-center gap-1 text-[11px] bg-white/20 backdrop-blur-sm border border-white/30 px-3 py-1.5 rounded-full w-fit">
+              Learn more <i data-lucide="arrow-up-right" class="w-3 h-3"></i>
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ========================================================= -->
+  <!-- PAGE 2: SINGLE VILLA DETAIL PAGE                          -->
+  <!-- ========================================================= -->
+  <main id="page-detail" class="page-view hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+    <!-- Bento 5-Photo Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-3 rounded-3xl overflow-hidden mb-8">
+      <div class="lg:col-span-6 h-72 sm:h-[420px]">
+        <img id="detailMainImg" src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1200&q=80" class="w-full h-full object-cover rounded-2xl" alt="Villa Main"/>
+      </div>
+      <div class="lg:col-span-6 grid grid-cols-2 gap-3 h-72 sm:h-[420px]">
+        <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover rounded-2xl" alt="Gallery 2"/>
+        <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover rounded-2xl" alt="Gallery 3"/>
+        <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover rounded-2xl" alt="Gallery 4"/>
+        <div class="relative h-full">
+          <img src="https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover rounded-2xl" alt="Gallery 5"/>
+          <div class="absolute bottom-3 right-3 flex items-center gap-2">
+            <button onclick="openWhatsApp('Hi Sanket! Please share the video walkthrough for SS031 4BHK Vagator.')" class="bg-luxPink text-white text-[11px] font-medium px-3 py-1.5 rounded-full flex items-center gap-1 shadow">
+              <i data-lucide="video" class="w-3.5 h-3.5"></i> Watch Video
+            </button>
+            <button class="bg-black/75 text-white text-[11px] font-medium px-3 py-1.5 rounded-full flex items-center gap-1 shadow">
+              <i data-lucide="image" class="w-3.5 h-3.5"></i> View All Photos
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main 2-Column Content + Sticky Right Inquiry Box -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+      
+      <!-- Left Column (8 Cols) -->
+      <div class="lg:col-span-8 space-y-10">
+        
+        <div>
+          <div class="flex flex-wrap items-start justify-between gap-4 mb-2">
+            <div>
+              <h1 id="detailTitle" class="text-2xl sm:text-3xl font-bold text-gray-900">SS031 4BHK Vagator</h1>
+              <p id="detailAddress" class="text-xs text-gray-500 flex items-center gap-1 mt-1">
+                <i data-lucide="map-pin" class="w-3.5 h-3.5 text-gray-400"></i> Vagator, Bardez, North Goa District, Goa, 403519, India
+              </p>
+              <div class="flex items-center gap-2 mt-2 text-xs">
+                <span class="font-bold text-gray-900 flex items-center gap-1"><i data-lucide="star" class="w-3.5 h-3.5 fill-gray-900"></i> 4.5/5</span>
+                <span class="text-gray-300">|</span>
+                <a href="#reviewsSection" class="text-luxTeal underline font-medium">101 customer reviews</a>
+              </div>
+            </div>
+            <div class="flex items-center gap-3 text-xs text-gray-600">
+              <button class="flex items-center gap-1 hover:text-black"><i data-lucide="share-2" class="w-4 h-4"></i> Share</button>
+              <button class="flex items-center gap-1 hover:text-luxPink"><i data-lucide="heart" class="w-4 h-4"></i> Save</button>
+              <button onclick="openWhatsApp('Hi Sanket! Please share the PDF brochure for SS031 4BHK Vagator.')" class="border border-luxPink text-luxPink hover:bg-luxPink hover:text-white px-3.5 py-1.5 rounded-full text-xs font-medium transition">
+                View Brochure
+              </button>
+            </div>
+          </div>
+
+          <div class="inline-block bg-gray-50 border border-gray-200 rounded-lg px-4 py-2 text-xs text-gray-600 mt-3">
+            4 Rooms &nbsp;|&nbsp; 4 Bathrooms &nbsp;|&nbsp; Upto 10 Guests &nbsp;|&nbsp; Meals Available
+          </div>
+        </div>
+
+        <!-- Quick Amenity Icon Boxes -->
+        <div class="flex flex-wrap items-center gap-4">
+          <div class="border border-gray-200 rounded-2xl p-4 w-28 text-center">
+            <i data-lucide="waves" class="w-5 h-5 mx-auto mb-1.5 text-gray-700"></i>
+            <span class="text-[11px] text-gray-600 block leading-tight">Swimming Pool</span>
+          </div>
+          <div class="border border-gray-200 rounded-2xl p-4 w-28 text-center">
+            <i data-lucide="flame" class="w-5 h-5 mx-auto mb-1.5 text-gray-700"></i>
+            <span class="text-[11px] text-gray-600 block leading-tight">Sauna Bath Service</span>
+          </div>
+          <div class="border border-gray-200 rounded-2xl p-4 w-28 text-center">
+            <i data-lucide="utensils" class="w-5 h-5 mx-auto mb-1.5 text-gray-700"></i>
+            <span class="text-[11px] text-gray-600 block leading-tight">Meals Available</span>
+          </div>
+          <div class="border border-gray-200 rounded-2xl p-4 w-28 text-center">
+            <i data-lucide="sparkles" class="w-5 h-5 mx-auto mb-1.5 text-gray-700"></i>
+            <span class="text-[11px] text-gray-600 block leading-tight">Housekeeping Available</span>
+          </div>
+          <div class="border border-gray-200 rounded-2xl p-4 w-28 text-center">
+            <i data-lucide="dumbbell" class="w-5 h-5 mx-auto mb-1.5 text-gray-700"></i>
+            <span class="text-[11px] text-gray-600 block leading-tight">Gym Available</span>
+          </div>
+          <a href="#villaAmenitiesGrid" class="text-xs font-semibold text-luxTeal underline ml-2">+15<br/>Amenities</a>
+        </div>
+
+        <!-- 2 Feature Highlights -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="border border-gray-200 rounded-2xl p-4 flex items-start gap-3">
+            <div class="p-2.5 rounded-xl bg-gray-50 border border-gray-200"><i data-lucide="utensils" class="w-5 h-5 text-gray-700"></i></div>
+            <div>
+              <h4 class="text-xs font-semibold text-gray-900">Food Service</h4>
+              <p class="text-[11px] text-gray-500 mt-0.5">Home Cooked meals with local ingredients</p>
+            </div>
+          </div>
+          <div class="border border-gray-200 rounded-2xl p-4 flex items-start gap-3">
+            <div class="p-2.5 rounded-xl bg-gray-50 border border-gray-200"><i data-lucide="accessibility" class="w-5 h-5 text-gray-700"></i></div>
+            <div>
+              <h4 class="text-xs font-semibold text-gray-900">Senior Citizen</h4>
+              <p class="text-[11px] text-gray-500 mt-0.5">Comfortable, unhurried stays for every age</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Teal Connect With Host Banner -->
+        <div class="bg-luxTeal text-white rounded-2xl p-5 flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full border border-white/40 flex items-center justify-center">
+              <i data-lucide="phone-call" class="w-4 h-4"></i>
+            </div>
+            <div>
+              <span class="font-medium text-sm block">Connect With Director — Sanket Thakur</span>
+              <span class="text-[11px] text-white/80">SEASALT Hospitality Concierge Desk</span>
+            </div>
+          </div>
+          <button onclick="openWhatsApp('Hi Sanket! Please give me a call back regarding SS031 4BHK Vagator.')" class="bg-white text-gray-900 hover:bg-gray-100 text-xs font-semibold px-5 py-2.5 rounded-full transition">
+            Request Call Back
+          </button>
+        </div>
+
+        <!-- Villa Description -->
+        <div>
+          <h2 class="text-2xl font-semibold mb-3 border-l-2 border-luxPink pl-3">
+            Seasalt Serene - Villa in <span class="script-accent font-normal">Goa</span>
+          </h2>
+          <p class="text-xs text-gray-500 leading-relaxed mb-5">
+            Located amidst lush tropical palms, this villa overlooks serene views and offers complete privacy. Seasalt Serene is a well-furnished holiday estate with modern interiors, vast lawn spaces, and spacious balconies. Wake up to the chirping of birds, soak in the coastal breeze, and unwind in your private swimming pool.
+          </p>
+          <button onclick="openWhatsApp('Hi Sanket! I would love to explore booking options for Seasalt Serene / SS031.')" class="bg-luxPink hover:bg-luxPinkHover text-white text-xs font-medium px-5 py-2.5 rounded-full inline-flex items-center gap-1.5">
+            Explore your stay <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+          </button>
+        </div>
+
+        <!-- Rules and Refund Policy -->
+        <div>
+          <h2 class="text-2xl font-semibold mb-6 border-l-2 border-luxPink pl-3">
+            Rules and Refund <span class="script-accent font-normal">Policy</span>
+          </h2>
+          <div class="flex items-center justify-between max-w-md mb-6 text-xs">
+            <div>
+              <span class="w-6 h-6 rounded-full bg-green-100 text-green-600 flex items-center justify-center mb-2"><i data-lucide="check" class="w-3.5 h-3.5"></i></span>
+              <p class="font-semibold text-gray-800">80% Future Stay Voucher</p>
+              <p class="text-gray-500 text-[11px]">50% Refund</p>
+              <p class="text-gray-400 text-[10px]">Before 7 days of Check-in</p>
+            </div>
+            <div class="flex-1 border-t border-dashed border-gray-300 mx-4"></div>
+            <div>
+              <span class="w-6 h-6 rounded-full bg-red-100 text-red-500 flex items-center justify-center mb-2"><i data-lucide="x" class="w-3.5 h-3.5"></i></span>
+              <p class="font-semibold text-gray-800">No Refund</p>
+              <p class="text-gray-400 text-[10px]">Within 7 days of Check-in</p>
+            </div>
+          </div>
+          <p class="text-xs text-gray-600 mb-3">
+            Check-in time: <strong class="text-gray-900">02:00 PM</strong> , Check-out time: <strong class="text-gray-900">11:00 AM</strong>
+          </p>
+        </div>
+
+        <!-- Villa Amenities -->
+        <div id="villaAmenitiesGrid">
+          <h2 class="text-2xl font-semibold mb-5 border-l-2 border-luxPink pl-3">
+            Villa <span class="script-accent font-normal">Amenities</span>
+          </h2>
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 text-xs text-gray-700">
+            <div class="border border-gray-200 rounded-xl p-3 flex items-center gap-3"><i data-lucide="wind" class="w-4 h-4 text-gray-500"></i> Air Condition</div>
+            <div class="border border-gray-200 rounded-xl p-3 flex items-center gap-3"><i data-lucide="utensils-crossed" class="w-4 h-4 text-gray-500"></i> Toaster</div>
+            <div class="border border-gray-200 rounded-xl p-3 flex items-center gap-3"><i data-lucide="wifi" class="w-4 h-4 text-gray-500"></i> Free Wifi</div>
+            <div class="border border-gray-200 rounded-xl p-3 flex items-center gap-3"><i data-lucide="droplet" class="w-4 h-4 text-gray-500"></i> Soap</div>
+            <div class="border border-gray-200 rounded-xl p-3 flex items-center gap-3"><i data-lucide="sparkles" class="w-4 h-4 text-gray-500"></i> Cleaning</div>
+            <div class="border border-gray-200 rounded-xl p-3 flex items-center gap-3"><i data-lucide="coffee" class="w-4 h-4 text-gray-500"></i> Breakfast</div>
+            <div class="border border-gray-200 rounded-xl p-3 flex items-center gap-3"><i data-lucide="bath" class="w-4 h-4 text-gray-500"></i> Washroom</div>
+            <div class="border border-gray-200 rounded-xl p-3 flex items-center gap-3"><i data-lucide="chef-hat" class="w-4 h-4 text-gray-500"></i> Cookware</div>
+            <div class="border border-gray-200 rounded-xl p-3 flex items-center gap-3"><i data-lucide="car" class="w-4 h-4 text-gray-500"></i> Parking</div>
+            <div class="border border-gray-200 rounded-xl p-3 flex items-center gap-3"><i data-lucide="waves" class="w-4 h-4 text-gray-500"></i> Swimming Pool</div>
+            <div class="border border-gray-200 rounded-xl p-3 flex items-center gap-3"><i data-lucide="shield-check" class="w-4 h-4 text-gray-500"></i> Safe</div>
+            <div class="border border-gray-200 rounded-xl p-3 flex items-center gap-3"><i data-lucide="sunrise" class="w-4 h-4 text-gray-500"></i> Private Deck</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right Column: Sticky Booking Inquiry Widget (4 Cols) -->
+      <div class="lg:col-span-4">
+        <div class="sticky top-28 border border-gray-200 rounded-3xl p-6 bg-white shadow-lg">
+          <div class="flex items-end justify-between border-b border-gray-100 pb-4 mb-5">
+            <div>
+              <p id="detailPrice" class="text-2xl font-bold text-gray-900">₹28,500</p>
+              <p class="text-[11px] text-gray-400">Per Night + Taxes</p>
+            </div>
+            <button onclick="openWhatsApp('Hi Sanket! Please share the exact price breakdown for this villa.')" class="text-[11px] text-luxPink underline">view price breakdown</button>
+          </div>
+
+          <div class="grid grid-cols-2 gap-3 mb-3">
+            <div class="border border-gray-200 rounded-xl p-3">
+              <label class="block text-[10px] text-gray-400">Check-In</label>
+              <input id="detailCheckIn" type="date" value="2026-07-25" class="w-full text-xs font-medium text-gray-800 focus:outline-none mt-0.5" />
+            </div>
+            <div class="border border-gray-200 rounded-xl p-3">
+              <label class="block text-[10px] text-gray-400">Checkout</label>
+              <input id="detailCheckOut" type="date" value="2026-07-29" class="w-full text-xs font-medium text-gray-800 focus:outline-none mt-0.5" />
+            </div>
+          </div>
+
+          <div class="border border-gray-200 rounded-xl p-3 mb-4">
+            <label class="block text-[10px] text-gray-400">Guests</label>
+            <select id="detailGuests" class="w-full text-xs font-medium text-gray-800 focus:outline-none bg-transparent mt-0.5">
+              <option value="6 Guests">6 Guests</option>
+              <option value="8 Guests">8 Guests</option>
+              <option value="10 Guests">10 Guests</option>
+              <option value="12+ Guests">12+ Guests</option>
+            </select>
+          </div>
+
+          <button onclick="sendDetailWhatsAppInquiry()" class="w-full bg-luxPink text-white hover:bg-luxPinkHover font-semibold py-3.5 rounded-xl text-xs transition shadow-md">
+            Enquire Now on WhatsApp
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Nearby Villas -->
+    <section class="mt-16 pt-10 border-t border-gray-100">
+      <h2 class="text-2xl font-semibold mb-6 border-l-2 border-luxPink pl-3">
+        Nearby <span class="script-accent font-normal">Villas</span>
+      </h2>
+      <div id="nearbyVillasGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+    </section>
+
+  </main>
+
+
+  <!-- ========================================================= -->
+  <!-- PAGE 3: VILLAS LISTING (MAP VIEW & FILTER LIST VIEW)      -->
+  <!-- ========================================================= -->
+  <main id="page-listing" class="page-view hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    
+    <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+      <h1 class="text-xl sm:text-2xl font-semibold">Curated SEASALT Hospitality Villas</h1>
+      <div class="flex items-center gap-3">
+        <button onclick="setListingLayout('map')" id="btnMapLayout" class="border border-gray-900 bg-gray-900 text-white text-xs font-medium px-4 py-2 rounded-lg flex items-center gap-1.5 transition">
+          <i data-lucide="map" class="w-3.5 h-3.5"></i> Map View
+        </button>
+        <button onclick="setListingLayout('sidebar')" id="btnSidebarLayout" class="border border-gray-300 text-gray-700 hover:border-gray-900 text-xs font-medium px-4 py-2 rounded-lg flex items-center gap-1.5 transition">
+          <i data-lucide="sliders-horizontal" class="w-3.5 h-3.5"></i> Filter List View
+        </button>
+      </div>
+    </div>
+
+    <!-- LAYOUT A: 2-COLUMN CARDS + RIGHT MAP VIEW -->
+    <div id="listingMapLayout" class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <div class="lg:col-span-7">
+        <div id="mapListingGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-6"></div>
+      </div>
+      <div class="lg:col-span-5">
+        <div class="sticky top-28 h-[520px] rounded-3xl overflow-hidden border border-gray-200 shadow-sm relative bg-sky-50">
+          <iframe 
+            title="Villa Locations Map"
+            src="https://www.openstreetmap.org/export/embed.html?bbox=73.68%2C15.45%2C73.92%2C15.65&amp;layer=mapnik" 
+            class="w-full h-full border-0">
+          </iframe>
+        </div>
+      </div>
+    </div>
+
+    <!-- LAYOUT B: LEFT FILTER SIDEBAR + HORIZONTAL VILLA CARDS -->
+    <div id="listingSidebarLayout" class="hidden grid-cols-1 lg:grid-cols-12 gap-8">
+      <aside class="lg:col-span-3 space-y-6 border-r border-gray-100 pr-4">
+        <div class="flex items-center justify-between">
+          <span class="bg-luxPink text-white text-xs font-medium px-4 py-2 rounded-lg flex items-center gap-1.5">
+            <i data-lucide="sliders-horizontal" class="w-3.5 h-3.5"></i> Filter
+          </span>
+          <button onclick="renderAllGrids()" class="text-xs text-gray-400 hover:text-black">Reset</button>
+        </div>
+
+        <div class="border-b border-gray-100 pb-5">
+          <div class="flex justify-between text-xs font-semibold mb-3">
+            <span>Price</span>
+            <span class="text-luxTeal cursor-pointer">Apply</span>
+          </div>
+          <input type="range" min="10000" max="150000" value="65000" class="w-full accent-luxPink" />
+          <div class="flex justify-between text-[11px] text-gray-500 mt-1">
+            <span>₹10,000</span>
+            <span>₹1,50,000+</span>
+          </div>
+        </div>
+
+        <div class="border-b border-gray-100 pb-5">
+          <div class="flex justify-between text-xs font-semibold mb-3">
+            <span>Key Amenities</span>
+            <span class="text-luxTeal cursor-pointer">Apply</span>
+          </div>
+          <div class="space-y-2 text-xs text-gray-600">
+            <label class="flex items-center gap-2"><input type="checkbox" checked class="rounded accent-luxPink"/> Private Pool / Jacuzzi</label>
+            <label class="flex items-center gap-2"><input type="checkbox" checked class="rounded accent-luxPink"/> High Speed Wifi</label>
+            <label class="flex items-center gap-2"><input type="checkbox" class="rounded accent-luxPink"/> In-house Chef</label>
+            <label class="flex items-center gap-2"><input type="checkbox" class="rounded accent-luxPink"/> Pet Friendly</label>
+          </div>
+        </div>
+      </aside>
+
+      <div id="horizontalListingContainer" class="lg:col-span-9 space-y-5"></div>
+    </div>
+
+  </main>
+
+
+  <!-- ========================================================= -->
+  <!-- PAGE 4: ABOUT US PAGE                                     -->
+  <!-- ========================================================= -->
+  <main id="page-about" class="page-view hidden">
+    
+    <section class="max-w-5xl mx-auto px-4 pt-14 pb-8 text-center">
+      <h1 class="text-3xl sm:text-5xl font-semibold text-luxPink mb-4">
+        Welcome To <span class="script-accent font-normal">SEASALT Hospitality</span>
+      </h1>
+      <p class="text-xs sm:text-sm text-gray-600 max-w-2xl mx-auto leading-relaxed mb-6">
+        At SEASALT Hospitality, led by Director <strong>Sanket Thakur</strong>, we understand the importance of finding the perfect accommodation for your dream vacation. With a passion for hospitality and a commitment to excellence, we curate a collection of the finest hand-picked luxury villas across Goa and India.
+      </p>
+      <div class="inline-flex items-center gap-2 bg-stone-950 text-white text-xs px-5 py-2 rounded-full mb-10">
+        <span class="w-2 h-2 rounded-full bg-luxPink"></span>
+        <span>Founder & Director: <strong>SANKET THAKUR</strong></span>
+      </div>
+
+      <!-- Minimalist Architectural Line-Art SVG -->
+      <div class="max-w-3xl mx-auto">
+        <svg viewBox="0 0 800 220" class="w-full h-auto stroke-gray-700" fill="none" stroke-width="1.2">
+          <circle cx="400" cy="45" r="18" />
+          <line x1="400" y1="18" x2="400" y2="8" /><line x1="400" y1="72" x2="400" y2="82" />
+          <line x1="373" y1="45" x2="363" y2="45" /><line x1="427" y1="45" x2="437" y2="45" />
+          <line x1="40" y1="200" x2="760" y2="200" stroke-width="1.5"/>
+          <rect x="130" y="120" width="90" height="80" />
+          <polygon points="130,120 152,80 175,120" />
+          <polygon points="175,120 197,80 220,120" />
+          <rect x="163" y="160" width="24" height="40" rx="12" />
+          <polygon points="240,200 265,110 345,110 370,200" />
+          <line x1="252" y1="155" x2="358" y2="155" />
+          <line x1="260" y1="130" x2="350" y2="130" />
+          <rect x="390" y="115" width="120" height="85" />
+          <line x1="390" y1="140" x2="510" y2="140" />
+          <rect x="405" y="155" width="18" height="45" rx="9" />
+          <rect x="440" y="155" width="18" height="45" rx="9" />
+          <rect x="475" y="155" width="18" height="45" rx="9" />
+          <rect x="540" y="100" width="75" height="100" />
+          <circle cx="577" cy="135" r="14" />
+          <rect x="640" y="110" width="35" height="90" />
+          <circle cx="657" cy="95" r="12" />
+        </svg>
+      </div>
+    </section>
+
+    <section class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-2 items-center">
+        <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=1000&q=80" class="w-full h-80 sm:h-96 object-cover" alt="Our Vision"/>
+        <div class="p-8 sm:p-16">
+          <h2 class="text-2xl sm:text-3xl font-bold mb-3">Our Vision</h2>
+          <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">
+            At SEASALT Hospitality, our vision is to redefine luxury villa stays in India. Under the leadership of Director Sanket Thakur, we believe every traveler deserves exquisite private accommodations and seamless concierge service that create unforgettable memories.
+          </p>
+        </div>
+      </div>
+      <div class="grid grid-cols-1 lg:grid-cols-2 items-center">
+        <div class="p-8 sm:p-16 order-2 lg:order-1">
+          <h2 class="text-2xl sm:text-3xl font-bold mb-3">Our Mission</h2>
+          <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">
+            Our mission at SEASALT Hospitality is to provide exceptional service, personalized attention, and a direct WhatsApp concierge booking experience. We carefully inspect and curate each villa in our portfolio to ensure the highest standards of quality, comfort, and privacy.
+          </p>
+        </div>
+        <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1000&q=80" class="w-full h-80 sm:h-96 object-cover order-1 lg:order-2" alt="Our Mission"/>
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ========================================================= -->
+  <!-- PAGE 5: BLOGS PAGE                                        -->
+  <!-- ========================================================= -->
+  <main id="page-blogs" class="page-view hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+    <div class="text-center max-w-3xl mx-auto mb-10">
+      <p class="text-xs uppercase tracking-widest text-gray-400 mb-2">SEASALT Hospitality Journal</p>
+      <h1 class="text-2xl sm:text-4xl font-medium leading-snug text-gray-900">
+        Stories, places and moments that inspire a way of experiencing the world with calm, beauty and truth.
+      </h1>
+    </div>
+
+    <div id="blogsPageGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+  </main>
+
+
+  <!-- ========================================================= -->
+  <!-- SHARED FOOTER: "BETTER TOGETHER." OVER BEACH WAVES        -->
+  <!-- ========================================================= -->
+  <footer class="relative py-20 px-4 bg-cover bg-center mt-12" style="background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1920&q=80');">
+    <div class="absolute inset-0 bg-teal-950/25"></div>
+    <div class="relative z-10 max-w-6xl mx-auto bg-white rounded-[28px] shadow-2xl p-8 sm:p-12 lg:p-14">
+      
+      <!-- Top Newsletter Row -->
+      <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-10 border-b border-gray-100">
+        <h2 class="text-2xl sm:text-4xl font-semibold text-gray-900">Better Together.</h2>
+        <form onsubmit="event.preventDefault(); showToast('Subscribed to SEASALT Hospitality!');" class="flex items-center border border-gray-200 rounded-full p-1.5 pl-5 w-full max-w-md shadow-sm">
+          <input type="email" required placeholder="Enter your email" class="w-full text-xs focus:outline-none text-gray-700" />
+          <button type="submit" class="bg-luxPink hover:bg-luxPinkHover text-white text-xs font-medium px-5 py-2.5 rounded-full inline-flex items-center gap-1.5 shrink-0 transition">
+            Subscribe <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+          </button>
+        </form>
+      </div>
+
+      <!-- 4 Footer Columns -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 pt-10 text-xs text-gray-600">
+        
+        <div class="lg:col-span-4 space-y-3">
+          <div class="flex items-center gap-2.5">
+            <div class="w-9 h-9 rounded-full border border-gray-700 flex items-center justify-center">
+              <i data-lucide="compass" class="w-4 h-4 text-gray-800"></i>
+            </div>
+            <div>
+              <span class="block text-base font-bold tracking-[0.22em] text-gray-900 leading-none">SEASALT</span>
+              <span class="block text-[8px] tracking-[0.35em] text-luxPink font-semibold mt-0.5">HOSPITALITY</span>
+            </div>
+          </div>
+          <p class="text-xs text-gray-500 leading-relaxed max-w-xs">
+            SEASALT Hospitality offers exclusive deals on curated vacation rental properties, luxury private pool villas, and bespoke concierge stays.
+          </p>
+        </div>
+
+        <div class="lg:col-span-2 space-y-2.5">
+          <h4 class="font-semibold text-gray-900">Explore</h4>
+          <ul class="space-y-2">
+            <li><button onclick="showPage('listing')" class="hover:text-luxPink">Apartments</button></li>
+            <li><button onclick="showPage('listing')" class="hover:text-luxPink">Luxury Villas</button></li>
+            <li><button onclick="showPage('about')" class="hover:text-luxPink">About Us</button></li>
+            <li><button onclick="showPage('blogs')" class="hover:text-luxPink">Blogs</button></li>
+          </ul>
+        </div>
+
+        <div class="lg:col-span-3 space-y-2.5">
+          <h4 class="font-semibold text-gray-900">Popular Villas</h4>
+          <ul class="space-y-2">
+            <li><button onclick="filterByDestination('Goa')" class="hover:text-luxPink">Villas in North Goa</button></li>
+            <li><button onclick="filterByDestination('Goa')" class="hover:text-luxPink">Villas in South Goa</button></li>
+            <li><button onclick="filterByDestination('Udaipur')" class="hover:text-luxPink">Villas in Udaipur</button></li>
+            <li><button onclick="filterByDestination('Jaipur')" class="hover:text-luxPink">Villas in Jaipur</button></li>
+            <li><button onclick="filterByDestination('Manali & Shimla')" class="hover:text-luxPink">Villas in Manali & Shimla</button></li>
+            <li><button onclick="filterByDestination('Kerala')" class="hover:text-luxPink">Villas in Kerala</button></li>
+          </ul>
+        </div>
+
+        <div class="lg:col-span-3 space-y-2.5">
+          <h4 class="font-semibold text-gray-900">Company</h4>
+          <p class="text-gray-800 font-semibold leading-relaxed">
+            SEASALT HOSPITALITY<br/>
+            <span class="text-luxPink">Director : SANKET THAKUR</span>
+          </p>
+          <p class="flex items-start gap-2 text-gray-500">
+            <i data-lucide="map-pin" class="w-4 h-4 shrink-0 mt-0.5 text-gray-700"></i>
+            <span>Goa, India</span>
+          </p>
+          <p class="flex items-center gap-2 text-gray-700 font-medium">
+            <i data-lucide="phone" class="w-4 h-4 text-gray-700"></i>
+            <a href="https://wa.me/919399344077" target="_blank" class="hover:text-luxPink">+91 93993 44077</a>
+          </p>
+          <p class="flex items-center gap-2 text-gray-500">
+            <i data-lucide="mail" class="w-4 h-4 text-gray-700"></i>
+            <span>info@seasalthospitality.com</span>
+          </p>
+        </div>
+
+      </div>
+
+      <p class="text-center text-[11px] text-gray-400 mt-10 pt-6 border-t border-gray-100">
+        &copy; 2026 SEASALT Hospitality | Directed by Sanket Thakur. All rights reserved.
+      </p>
+    </div>
+  </footer>
+
+
+  <!-- ========================================================= -->
+  <!-- GLASSMORPHISM AUTH MODALS (Sign Up / Sign In / OTP)       -->
+  <!-- ========================================================= -->
+  <div id="authModalBackdrop" class="fixed inset-0 z-50 hidden bg-black/70 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="relative w-full max-w-3xl rounded-3xl overflow-hidden shadow-2xl bg-cover bg-center p-6 sm:p-12" style="background-image: url('https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1200&q=80');">
+      <button onclick="closeAuthModal()" class="absolute top-4 right-4 z-20 w-8 h-8 rounded-full bg-black/40 text-white flex items-center justify-center hover:bg-black">&times;</button>
+
+      <div class="bg-black/45 backdrop-blur-xl border border-white/25 rounded-3xl p-6 sm:p-10 text-white">
+        
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-6 border-b border-white/20 mb-6">
+          <div class="flex items-center gap-2.5">
+            <div class="w-9 h-9 rounded-full border border-white/70 flex items-center justify-center">
+              <i data-lucide="compass" class="w-4 h-4"></i>
+            </div>
+            <div>
+              <span class="block text-base font-semibold tracking-[0.22em] leading-none">SEASALT</span>
+              <span class="block text-[8px] tracking-[0.35em] text-white/70 mt-0.5">HOSPITALITY</span>
+            </div>
+          </div>
+          <p class="text-xs sm:text-sm font-medium text-right">Book a Stay.<br/>Enjoy a Private Villa Getaway.</p>
+        </div>
+
+        <!-- VIEW 1: SIGN UP -->
+        <div id="authViewSignup" class="hidden space-y-4">
+          <h3 class="text-xl font-bold text-center mb-2">Sign Up</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+            <div>
+              <label class="block mb-1 text-white/90">First Name*</label>
+              <input type="text" class="w-full bg-white/20 border border-white/30 rounded-lg px-3 py-2.5 text-white focus:outline-none" />
+            </div>
+            <div>
+              <label class="block mb-1 text-white/90">Last Name*</label>
+              <input type="text" class="w-full bg-white/20 border border-white/30 rounded-lg px-3 py-2.5 text-white focus:outline-none" />
+            </div>
+            <div>
+              <label class="block mb-1 text-white/90">Mobile Number*</label>
+              <div class="flex bg-white/20 border border-white/30 rounded-lg overflow-hidden">
+                <span class="px-3 py-2.5 bg-white/10 border-r border-white/20">+91</span>
+                <input type="tel" class="w-full bg-transparent px-3 py-2.5 text-white focus:outline-none" />
+              </div>
+            </div>
+            <div>
+              <label class="block mb-1 text-white/90">Email Id*</label>
+              <input type="email" class="w-full bg-white/20 border border-white/30 rounded-lg px-3 py-2.5 text-white focus:outline-none" />
+            </div>
+          </div>
+          <button onclick="openAuthModal('otp')" class="w-full bg-white text-luxPink font-semibold py-2.5 rounded-full text-xs mt-4 hover:bg-gray-100 transition">
+            Sign up
+          </button>
+        </div>
+
+        <!-- VIEW 2: SIGN IN -->
+        <div id="authViewSignin" class="hidden space-y-4 max-w-md mx-auto">
+          <div class="text-center">
+            <h3 class="text-xl font-bold">Sign In</h3>
+            <p class="text-xs text-white/80 mt-1">Welcome to SEASALT Hospitality</p>
+          </div>
+          <div class="text-xs">
+            <label class="block mb-1 text-white/90">Mobile Number*</label>
+            <div class="flex bg-white/20 border border-white/30 rounded-lg overflow-hidden">
+              <span class="px-3 py-2.5 bg-white/10 border-r border-white/20">+91</span>
+              <input type="tel" placeholder="9399344077" class="w-full bg-transparent px-3 py-2.5 text-white placeholder-white/50 focus:outline-none" />
+            </div>
+          </div>
+          <button onclick="openAuthModal('otp')" class="w-full bg-white text-luxPink font-semibold py-2.5 rounded-full text-xs mt-4 hover:bg-gray-100 transition">
+            Get OTP
+          </button>
+        </div>
+
+        <!-- VIEW 3: OTP VERIFICATION -->
+        <div id="authViewOtp" class="hidden space-y-4 max-w-md mx-auto text-center">
+          <h3 class="text-xl font-bold">Verify OTP</h3>
+          <p class="text-xs text-white/85">Enter OTP sent to your number</p>
+          <div class="flex justify-center gap-2.5 py-2">
+            <input type="text" maxlength="1" value="4" class="w-10 h-10 rounded-lg bg-white/20 border border-white/40 text-center text-sm font-bold focus:outline-none" />
+            <input type="text" maxlength="1" value="8" class="w-10 h-10 rounded-lg bg-white/20 border border-white/40 text-center text-sm font-bold focus:outline-none" />
+            <input type="text" maxlength="1" value="2" class="w-10 h-10 rounded-lg bg-white/20 border border-white/40 text-center text-sm font-bold focus:outline-none" />
+            <input type="text" maxlength="1" value="9" class="w-10 h-10 rounded-lg bg-white/20 border border-white/40 text-center text-sm font-bold focus:outline-none" />
+          </div>
+          <button onclick="closeAuthModal(); showToast('Signed in to SEASALT Hospitality!');" class="w-full bg-white text-luxPink font-semibold py-2.5 rounded-full text-xs hover:bg-gray-100 transition">
+            Sign In
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Notification Toast -->
+  <div id="toastNotification" class="fixed bottom-6 right-6 z-50 hidden bg-gray-900 text-white text-xs font-medium px-5 py-3 rounded-full shadow-xl"></div>
+
+
+  <!-- ========================================================= -->
+  <!-- JAVASCRIPT CONTROLLER (919399344077)                      -->
+  <!-- ========================================================= -->
+  <script>
+    const WHATSAPP_NUMBER = "919399344077";
+
+    // Header Pill Bar State
+    const headerMonths = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    let headerCalYear = 2026;
+    let headerCalMonth = 6; // July
+    let headerStartDate = new Date(2026, 6, 25);
+    let headerEndDate = new Date(2026, 6, 29);
+    let selectingEnd = false;
+    const headerGuestCounts = { adults: 2, children: 0 };
+
+    function closeAllHeaderDropdowns() {
+      document.querySelectorAll('.header-dropdown').forEach(el => el.classList.add('hidden'));
+    }
+
+    function toggleHeaderDropdown(menuId, event) {
+      if (event) event.stopPropagation();
+      const menu = document.getElementById(menuId);
+      const isHidden = menu.classList.contains('hidden');
+      closeAllHeaderDropdowns();
+      closeAllSearchPopovers();
+      if (isHidden) {
+        menu.classList.remove('hidden');
+        if (menuId === 'headerDateMenu') renderHeaderCalendar();
+      }
+    }
+
+    function selectHeaderLocation(loc) {
+      document.getElementById('headerLocationText').innerText = loc;
+      const heroLocInput = document.getElementById('searchLocationInput');
+      if (heroLocInput) heroLocInput.value = loc;
+      closeAllHeaderDropdowns();
+      toggleHeaderDropdown('headerDateMenu');
+    }
+
+    function formatHeaderDate(d) {
+      return `${d.getDate()} ${headerMonths[d.getMonth()]} ${d.getFullYear()}`;
+    }
+
+    function toInputDateString(d) {
+      const yyyy = d.getFullYear();
+      const mm = String(d.getMonth() + 1).padStart(2, '0');
+      const dd = String(d.getDate()).padStart(2, '0');
+      return `${yyyy}-${mm}-${dd}`;
+    }
+
+    function updateHeaderDateDisplay() {
+      if (headerStartDate && headerEndDate) {
+        const formatted = `${formatHeaderDate(headerStartDate)} - ${formatHeaderDate(headerEndDate)}`;
+        document.getElementById('headerDateText').innerText = formatted;
+        document.getElementById('headerCheckInInput').value = toInputDateString(headerStartDate);
+        document.getElementById('headerCheckOutInput').value = toInputDateString(headerEndDate);
+        const heroDateInput = document.getElementById('searchDateInput');
+        if (heroDateInput) heroDateInput.value = formatted;
+      } else if (headerStartDate) {
+        document.getElementById('headerDateText').innerText = `${formatHeaderDate(headerStartDate)} - Select Checkout`;
+        document.getElementById('headerCheckInInput').value = toInputDateString(headerStartDate);
+      }
+    }
+
+    function changeHeaderCalMonth(delta) {
+      headerCalMonth += delta;
+      if (headerCalMonth > 11) { headerCalMonth = 0; headerCalYear++; }
+      if (headerCalMonth < 0) { headerCalMonth = 11; headerCalYear--; }
+      renderHeaderCalendar();
+    }
+
+    function pickHeaderCalDay(day) {
+      const clicked = new Date(headerCalYear, headerCalMonth, day);
+      if (!selectingEnd || clicked < headerStartDate) {
+        headerStartDate = clicked;
+        headerEndDate = null;
+        selectingEnd = true;
+      } else {
+        headerEndDate = clicked;
+        selectingEnd = false;
+      }
+      updateHeaderDateDisplay();
+      renderHeaderCalendar();
+    }
+
+    function syncHeaderDateInputs() {
+      const inVal = document.getElementById('headerCheckInInput').value;
+      const outVal = document.getElementById('headerCheckOutInput').value;
+      if (inVal) {
+        const [y, m, d] = inVal.split('-').map(Number);
+        headerStartDate = new Date(y, m - 1, d);
+        headerCalYear = y;
+        headerCalMonth = m - 1;
+      }
+      if (outVal) {
+        const [y2, m2, d2] = outVal.split('-').map(Number);
+        headerEndDate = new Date(y2, m2 - 1, d2);
+      }
+      updateHeaderDateDisplay();
+      renderHeaderCalendar();
+    }
+
+    function renderHeaderCalendar() {
+      document.getElementById('headerCalMonthLabel').innerText = `${headerMonths[headerCalMonth]} ${headerCalYear}`;
+      const firstDay = new Date(headerCalYear, headerCalMonth, 1).getDay();
+      const daysInMonth = new Date(headerCalYear, headerCalMonth + 1, 0).getDate();
+      let html = '';
+
+      for (let i = 0; i < firstDay; i++) {
+        html += `<span></span>`;
+      }
+
+      for (let d = 1; d <= daysInMonth; d++) {
+        const current = new Date(headerCalYear, headerCalMonth, d);
+        const isStart = headerStartDate && current.toDateString() === headerStartDate.toDateString();
+        const isEnd = headerEndDate && current.toDateString() === headerEndDate.toDateString();
+        const inRange = headerStartDate && headerEndDate && current > headerStartDate && current < headerEndDate;
+
+        let btnClass = "py-1.5 rounded-lg text-white/80 hover:bg-white/10 transition";
+        if (isStart || isEnd) {
+          btnClass = "py-1.5 rounded-lg bg-luxPink text-white font-bold shadow-[0_0_10px_rgba(225,75,110,0.6)]";
+        } else if (inRange) {
+          btnClass = "py-1.5 rounded-lg bg-luxPink/25 text-luxPink font-medium";
+        }
+
+        html += `<button type="button" onclick="pickHeaderCalDay(${d})" class="${btnClass}">${d}</button>`;
+      }
+
+      document.getElementById('headerCalGrid').innerHTML = html;
+    }
+
+    function changeHeaderGuests(type, delta) {
+      if (type === 'adults') {
+        headerGuestCounts.adults = Math.max(1, headerGuestCounts.adults + delta);
+      } else {
+        headerGuestCounts.children = Math.max(0, headerGuestCounts.children + delta);
+      }
+      document.getElementById('headerAdultsVal').innerText = headerGuestCounts.adults;
+      document.getElementById('headerChildrenVal').innerText = headerGuestCounts.children;
+
+      const total = headerGuestCounts.adults + headerGuestCounts.children;
+      const label = total === 1 ? '1 Guest' : `${total} Guests`;
+      document.getElementById('headerGuestsText').innerText = label;
+
+      const heroGuestsInput = document.getElementById('searchGuestsInput');
+      if (heroGuestsInput) heroGuestsInput.value = label;
+    }
+
+    function triggerHeaderSearch() {
+      closeAllHeaderDropdowns();
+      showPage('listing');
+    }
+
+    // Villa Catalog
+    const villasData = [
+      {
+        id: 1,
+        name: "Seasalt Villa 01 — Assagao",
+        codeName: "SS031 4BHK Assagao",
+        location: "Assagao, North Goa",
+        rating: "4.8 (142)",
+        specs: "4 Rooms | 4 Bathrooms | Upto 10 Guests",
+        price: "₹ 34,500",
+        image: "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: 2,
+        name: "Seasalt Villa 02 — Vagator",
+        codeName: "SS032 3BHK Vagator",
+        location: "Vagator, North Goa",
+        rating: "4.7 (198)",
+        specs: "3 Rooms | 3 Bathrooms | Upto 8 Guests",
+        price: "₹ 26,000",
+        image: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: 3,
+        name: "Seasalt Villa 03 — Candolim",
+        codeName: "SS033 4BHK Candolim",
+        location: "Candolim, North Goa",
+        rating: "4.9 (215)",
+        specs: "4 Rooms | 4 Bathrooms | Upto 10 Guests",
+        price: "₹ 38,000",
+        image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: 4,
+        name: "Seasalt Villa 04 — Anjuna",
+        codeName: "SS034 5BHK Anjuna",
+        location: "Anjuna, North Goa",
+        rating: "4.6 (164)",
+        specs: "5 Rooms | 5 Bathrooms | Upto 14 Guests",
+        price: "₹ 48,000",
+        image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: 5,
+        name: "Seasalt Villa 05 — Udaipur",
+        codeName: "SS035 4BHK Udaipur",
+        location: "Udaipur, Rajasthan",
+        rating: "4.8 (112)",
+        specs: "4 Rooms | 4 Bathrooms | Upto 10 Guests",
+        price: "₹ 42,000",
+        image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: 6,
+        name: "Seasalt Villa 06 — Manali",
+        codeName: "SS036 4BHK Manali",
+        location: "Manali, Himachal Pradesh",
+        rating: "4.7 (189)",
+        specs: "4 Rooms | 4 Bathrooms | Upto 10 Guests",
+        price: "₹ 31,000",
+        image: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=800&q=80"
+      }
+    ];
+
+    function createVillaCardHTML(villa) {
+      return `
+        <div onclick="openVillaDetail(${villa.id})" class="group cursor-pointer">
+          <div class="relative h-56 rounded-2xl overflow-hidden mb-3">
+            <img src="${villa.image}" alt="${villa.name}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
+            <button onclick="event.stopPropagation(); showToast('Saved to wishlist!');" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-black/35 text-white flex items-center justify-center hover:bg-luxPink transition">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </button>
+          </div>
+          <div class="flex items-center justify-between mb-1">
+            <h3 class="font-semibold text-base text-gray-900 group-hover:text-luxPink transition">${villa.name}</h3>
+            <span class="text-xs font-semibold text-gray-800">★ ${villa.rating}</span>
+          </div>
+          <p class="text-[11px] text-gray-500 mb-1">📍 ${villa.location}</p>
+          <p class="text-[11px] text-gray-400 mb-2">${villa.specs}</p>
+          <p class="text-sm font-bold text-gray-900">${villa.price} <span class="text-[11px] font-normal text-gray-400">For 1 night + Taxes</span></p>
+        </div>
+      `;
+    }
+
+    function createHorizontalVillaHTML(villa) {
+      return `
+        <div onclick="openVillaDetail(${villa.id})" class="border border-gray-200 rounded-2xl p-4 flex flex-col sm:flex-row gap-5 hover:shadow-md transition cursor-pointer bg-white">
+          <div class="relative w-full sm:w-60 h-44 rounded-xl overflow-hidden shrink-0">
+            <img src="${villa.image}" class="w-full h-full object-cover" alt="${villa.name}" />
+          </div>
+          <div class="flex-1 flex flex-col justify-between">
+            <div class="flex items-start justify-between">
+              <div>
+                <h3 class="font-semibold text-lg text-gray-900">${villa.name}</h3>
+                <p class="text-xs text-gray-500 mt-0.5">📍 ${villa.location}</p>
+                <p class="text-xs text-gray-400 mt-1">${villa.specs}</p>
+              </div>
+              <span class="text-xs font-semibold text-gray-800">★ ${villa.rating}</span>
+            </div>
+            <div class="flex flex-wrap items-center justify-between gap-4 pt-3 border-t border-gray-100 mt-3">
+              <div class="flex items-center gap-4 text-[11px] text-gray-500">
+                <span>💨 Air Condition</span>
+                <span>🏊 Private Pool</span>
+                <span>📶 High-Speed Wi-Fi</span>
+              </div>
+              <div class="text-right">
+                <p class="text-lg font-bold text-gray-900">${villa.price}</p>
+                <p class="text-[10px] text-gray-400">For 1 night + Taxes</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderAllGrids() {
+      document.getElementById('homeTopVillasGrid').innerHTML = villasData.slice(0, 4).map(createVillaCardHTML).join('');
+      document.getElementById('nearbyVillasGrid').innerHTML = villasData.slice(0, 4).map(createVillaCardHTML).join('');
+      document.getElementById('mapListingGrid').innerHTML = villasData.map(createVillaCardHTML).join('');
+      document.getElementById('horizontalListingContainer').innerHTML = villasData.map(createHorizontalVillaHTML).join('');
+
+      const blogImages = [
+        "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=700&q=80",
+        "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=700&q=80",
+        "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=700&q=80",
+        "https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=700&q=80",
+        "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=700&q=80",
+        "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=700&q=80"
+      ];
+      document.getElementById('blogsPageGrid').innerHTML = blogImages.map(img => `
+        <div onclick="openWhatsApp('Hi Sanket! I read your SEASALT Hospitality blog and want to plan a villa stay.')" class="relative h-80 rounded-3xl overflow-hidden shadow-md group cursor-pointer">
+          <img src="${img}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="Blog"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent p-6 flex flex-col justify-end text-white">
+            <span class="text-xs text-white/80 mb-1">SEASALT Journal</span>
+            <h3 class="text-base font-medium leading-snug mb-4">Curated Luxury Escapes: Inside India's Most Exclusive Private Pool Villas</h3>
+            <span class="inline-flex items-center gap-1.5 text-xs bg-white/20 backdrop-blur-sm border border-white/30 px-4 py-1.5 rounded-full w-fit">
+              Read more ↗
+            </span>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function showPage(pageId) {
+      document.querySelectorAll('.page-view').forEach(p => p.classList.add('hidden'));
+      document.getElementById(`page-${pageId}`).classList.remove('hidden');
+
+      document.querySelectorAll('.nav-link').forEach(btn => {
+        if (btn.dataset.nav === pageId) {
+          btn.classList.add('text-luxPink', 'font-semibold');
+        } else {
+          btn.classList.remove('text-luxPink', 'font-semibold');
+        }
+      });
+
+      closeAllSearchPopovers();
+      closeAllHeaderDropdowns();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function openVillaDetail(id) {
+      const v = villasData.find(x => x.id === id) || villasData[0];
+      document.getElementById('detailMainImg').src = v.image;
+      document.getElementById('detailTitle').innerText = v.codeName;
+      document.getElementById('detailPrice').innerText = v.price;
+      showPage('detail');
+    }
+
+    function setListingLayout(mode) {
+      const mapEl = document.getElementById('listingMapLayout');
+      const sideEl = document.getElementById('listingSidebarLayout');
+      const btnMap = document.getElementById('btnMapLayout');
+      const btnSide = document.getElementById('btnSidebarLayout');
+
+      if (mode === 'map') {
+        mapEl.classList.remove('hidden');
+        sideEl.classList.add('hidden');
+        sideEl.classList.remove('grid');
+        btnMap.className = "border border-gray-900 bg-gray-900 text-white text-xs font-medium px-4 py-2 rounded-lg flex items-center gap-1.5 transition";
+        btnSide.className = "border border-gray-300 text-gray-700 hover:border-gray-900 text-xs font-medium px-4 py-2 rounded-lg flex items-center gap-1.5 transition";
+      } else {
+        mapEl.classList.add('hidden');
+        sideEl.classList.remove('hidden');
+        sideEl.classList.add('grid');
+        btnSide.className = "border border-luxPink bg-luxPink text-white text-xs font-medium px-4 py-2 rounded-lg flex items-center gap-1.5 transition";
+        btnMap.className = "border border-gray-300 text-gray-700 hover:border-gray-900 text-xs font-medium px-4 py-2 rounded-lg flex items-center gap-1.5 transition";
+      }
+    }
+
+    function closeAllSearchPopovers() {
+      document.querySelectorAll('.search-popover').forEach(el => el.classList.add('hidden'));
+    }
+
+    function toggleSearchPopover(id, event) {
+      if (event) event.stopPropagation();
+      const target = document.getElementById(id);
+      const isHidden = target.classList.contains('hidden');
+      closeAllSearchPopovers();
+      closeAllHeaderDropdowns();
+      if (isHidden) target.classList.remove('hidden');
+    }
+
+    function selectDestination(dest) {
+      document.getElementById('searchLocationInput').value = dest;
+      document.getElementById('headerLocationText').innerText = dest;
+      closeAllSearchPopovers();
+      toggleSearchPopover('datePopover');
+    }
+
+    function selectDate(dateStr) {
+      document.getElementById('searchDateInput').value = dateStr;
+      document.getElementById('headerDateText').innerText = dateStr;
+      closeAllSearchPopovers();
+      toggleSearchPopover('guestsPopover');
+    }
+
+    const guestState = { adults: 2, children: 0, pets: 0 };
+    function updateGuestCount(type, delta) {
+      guestState[type] = Math.max(0, guestState[type] + delta);
+      document.getElementById(`${type}Count`).innerText = guestState[type];
+      const total = guestState.adults + guestState.children;
+      const label = `${total} Guests${guestState.pets ? `, ${guestState.pets} Pets` : ''}`;
+      document.getElementById('searchGuestsInput').value = label;
+      document.getElementById('headerGuestsText').innerText = `${total} Guests`;
+    }
+
+    function filterByDestination(dest) {
+      document.getElementById('searchLocationInput').value = dest;
+      document.getElementById('headerLocationText').innerText = dest;
+      showPage('listing');
+    }
+
+    function openAuthModal(view) {
+      document.getElementById('authModalBackdrop').classList.remove('hidden');
+      document.getElementById('authViewSignup').classList.add('hidden');
+      document.getElementById('authViewSignin').classList.add('hidden');
+      document.getElementById('authViewOtp').classList.add('hidden');
+
+      if (view === 'signup') document.getElementById('authViewSignup').classList.remove('hidden');
+      if (view === 'signin') document.getElementById('authViewSignin').classList.remove('hidden');
+      if (view === 'otp') document.getElementById('authViewOtp').classList.remove('hidden');
+    }
+
+    function closeAuthModal() {
+      document.getElementById('authModalBackdrop').classList.add('hidden');
+    }
+
+    function copyCoupon(code) {
+      navigator.clipboard?.writeText(code);
+      showToast(`Copied coupon code: ${code}`);
+    }
+
+    function showToast(msg) {
+      const t = document.getElementById('toastNotification');
+      t.innerText = msg;
+      t.classList.remove('hidden');
+      setTimeout(() => t.classList.add('hidden'), 2600);
+    }
+
+    function openWhatsApp(text) {
+      const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
+      window.open(url, '_blank');
+    }
+
+    function sendDetailWhatsAppInquiry() {
+      const title = document.getElementById('detailTitle').innerText;
+      const checkIn = document.getElementById('detailCheckIn').value;
+      const checkOut = document.getElementById('detailCheckOut').value;
+      const guests = document.getElementById('detailGuests').value;
+      const msg = `Hi Sanket (SEASALT Hospitality)! I want to enquire about *${title}*.\n\n📅 Check-in: ${checkIn}\n📅 Check-out: ${checkOut}\n👥 Guests: ${guests}\n\nPlease share live availability and final price.`;
+      openWhatsApp(msg);
+    }
+
+    document.addEventListener('click', () => {
+      closeAllHeaderDropdowns();
+      closeAllSearchPopovers();
+    });
+
+    renderAllGrids();
+    lucide.createIcons();
+  </script>
+</body>
+</html>
