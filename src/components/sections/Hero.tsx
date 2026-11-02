@@ -76,7 +76,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative h-screen w-full flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-screen w-full flex flex-col justify-center overflow-hidden pb-20">
       <div className="absolute inset-0 z-0 overflow-hidden">
         <video
           autoPlay
@@ -91,7 +91,7 @@ export default function Hero() {
         <div className="absolute inset-0 z-10 bg-[linear-gradient(180deg,rgba(10,10,10,0.4)_0%,rgba(10,10,10,0.65)_100%)]" />
       </div>
 
-      <div className="relative z-10 w-full container-main py-20">
+      <div className="relative z-10 w-full container-main py-20 flex-1 flex flex-col justify-center">
         <div className="max-w-4xl mx-auto text-center text-white mb-16">
           <span className="inline-block bg-white/10 backdrop-blur-sm border border-white/20 px-4 py-2 rounded-full text-sm font-medium mb-6 animate-fade-in">
             Flat 10% Off! Use Code: <span className="font-semibold text-luxPink">SEASALT10</span>
