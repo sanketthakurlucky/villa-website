@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import { SmoothScroll, VillaShowcaseSection, DestinationParallaxSection, FeatureScrollSection } from '@/components/scroll';
-import HeroLandingSection from '@/components/sections/HeroLandingSection';
+import HeroCarousel from '@/components/sections/HeroCarousel';
 import LuxuryCollections from '@/components/sections/LuxuryCollections';
 import TrustSignals from '@/components/sections/TrustSignals';
 import Testimonials from '@/components/sections/Testimonials';
@@ -164,7 +164,7 @@ export default function HomePage() {
     <>
       <SmoothScroll>
         <main className="min-h-screen bg-stone-950">
-          <HeroLandingSection />
+          <HeroCarousel />
           <VillaShowcaseSection villas={sampleVillas} />
           <DestinationParallaxSection destinations={sampleDestinations} />
           <FeatureScrollSection features={sampleFeatures} />
