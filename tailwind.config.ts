@@ -17,8 +17,9 @@ const config: Config = {
         luxTealLight: '#e8f4f6',
         luxDark: '#1A1A1A',
         luxDarkLight: '#2D2D2D',
-        luxGold: '#D4A843',
+        luxGold: '#D4AF37',
         luxGoldHover: '#b89038',
+        goldAccent: '#D4AF37',
       },
       fontFamily: {
         sans: ['var(--font-plus-jakarta)', 'system-ui', 'sans-serif'],

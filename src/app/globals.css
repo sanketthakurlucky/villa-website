@@ -17,11 +17,11 @@
   }
 
   body {
-    @apply bg-white text-luxDark font-sans;
+    @apply bg-stone-950 text-white font-sans;
   }
 
   ::selection {
-    @apply bg-luxPink text-white;
+    @apply bg-goldAccent text-white;
   }
 
   ::-webkit-scrollbar {
@@ -30,15 +30,15 @@
   }
 
   ::-webkit-scrollbar-track {
-    @apply bg-gray-100;
+    @apply bg-stone-900;
   }
 
   ::-webkit-scrollbar-thumb {
-    @apply bg-gray-300 rounded-full hover:bg-gray-400;
+    @apply bg-stone-700 rounded-full hover:bg-stone-600;
   }
 
   ::-webkit-scrollbar-corner {
-    @apply bg-gray-100;
+    @apply bg-stone-900;
   }
 }
 
@@ -73,6 +73,32 @@
 
   .glass-dark {
     @apply bg-stone-950/80 backdrop-blur-xl border border-white/10;
+  }
+
+  /* Luxury gradient radial utility */
+  .bg-gradient-radial {
+    background: radial-gradient(ellipse at center, var(--tw-gradient-from), var(--tw-gradient-to));
+  }
+
+  .from-gold-accent\/10 {
+    --tw-gradient-from: rgba(212, 175, 55, 0.1) var(--tw-gradient-from-position);
+    --tw-gradient-to: rgba(212, 175, 55, 0) var(--tw-gradient-to-position);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+  }
+
+  .from-gold-accent\/5 {
+    --tw-gradient-from: rgba(212, 175, 55, 0.05) var(--tw-gradient-from-position);
+    --tw-gradient-to: rgba(212, 175, 55, 0) var(--tw-gradient-to-position);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+  }
+
+  .via-transparent {
+    --tw-gradient-via: transparent var(--tw-gradient-via-position);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-via), var(--tw-gradient-to);
+  }
+
+  .to-transparent {
+    --tw-gradient-to: transparent var(--tw-gradient-to-position);
   }
 }
 
