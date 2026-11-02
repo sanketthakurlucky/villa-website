@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next';
-import { Inter, Plus_Jakarta_Sans, Cormorant_Garamond, Alex_Brush } from 'next/font/google';
+import { Inter, Plus_Jakarta_Sans, Cormorant_Garamond, Alex_Brush, Playfair_Display } from 'next/font/google';
 import './globals.css';
 
 const inter = Inter({
@@ -27,6 +27,13 @@ const alexBrush = Alex_Brush({
   subsets: ['latin'],
   weight: ['400'],
   variable: '--font-alex-brush',
+  display: 'swap',
+});
+
+const playfairDisplay = Playfair_Display({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-playfair',
   display: 'swap',
 });
 
@@ -96,7 +103,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const fontVars = `${inter.variable} ${plusJakartaSans.variable} ${cormorantGaramond.variable} ${alexBrush.variable}`;
+  const fontVars = `${inter.variable} ${plusJakartaSans.variable} ${cormorantGaramond.variable} ${alexBrush.variable} ${playfairDisplay.variable}`;
 
   return (
     <html lang="en" className={fontVars}>

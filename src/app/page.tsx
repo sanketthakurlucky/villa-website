@@ -45,7 +45,7 @@ export default function HomePage() {
 
 function NavBar() {
   return (
-    <nav className="glass-dark border-b border-white/10 px-4 sm:px-6 lg:px-8">
+    <nav className="site-header px-4 sm:px-6 lg:px-8">
       <div className="container-main h-16 flex items-center justify-between">
         <a href="/" className="flex items-center gap-3" aria-label="SEASALT Hospitality Home">
           <div className="w-10 h-10 rounded-full border border-white/20 bg-white/5 flex items-center justify-center">
@@ -57,22 +57,22 @@ function NavBar() {
           </div>
           <div className="hidden sm:block">
             <span className="block text-lg font-bold tracking-[0.26em] text-white leading-none">SEASALT</span>
-            <span className="block text-[10px] font-medium tracking-[0.35em] text-luxPink mt-0.5">HOSPITALITY</span>
+            <span className="block text-[10px] font-medium tracking-[0.35em] gold-accent mt-0.5">HOSPITALITY</span>
           </div>
         </a>
 
         <div className="hidden md:flex items-center gap-8">
           <nav className="flex items-center gap-6" aria-label="Main navigation">
-            <a href="/villas" className="text-sm font-medium text-white/80 hover:text-luxPink transition-colors">Explore Villas</a>
-            <a href="/destinations" className="text-sm font-medium text-white/80 hover:text-luxPink transition-colors">Destinations</a>
-            <a href="/collections" className="text-sm font-medium text-white/80 hover:text-luxPink transition-colors">Collections</a>
-            <a href="/blogs" className="text-sm font-medium text-white/80 hover:text-luxPink transition-colors">Blogs</a>
-            <a href="/about" className="text-sm font-medium text-white/80 hover:text-luxPink transition-colors">About Us</a>
+            <a href="/villas" className="text-sm font-medium text-white/80 hover:gold-accent transition-colors">Explore Villas</a>
+            <a href="/destinations" className="text-sm font-medium text-white/80 hover:gold-accent transition-colors">Destinations</a>
+            <a href="/collections" className="text-sm font-medium text-white/80 hover:gold-accent transition-colors">Collections</a>
+            <a href="/blogs" className="text-sm font-medium text-white/80 hover:gold-accent transition-colors">Blogs</a>
+            <a href="/about" className="text-sm font-medium text-white/80 hover:gold-accent transition-colors">About Us</a>
           </nav>
 
           <div className="flex items-center gap-3">
-            <a href="/login" className="hidden sm:block text-sm font-medium text-white/80 hover:text-luxPink transition-colors">Login</a>
-            <a href="/register" className="hidden sm:block bg-luxPink hover:bg-luxPinkHover text-white text-sm font-semibold px-5 py-2.5 rounded-full transition-all duration-300 shadow-lux">
+            <a href="/login" className="hidden sm:block text-sm font-medium text-white/80 hover:gold-accent transition-colors">Login</a>
+            <a href="/register" className="hidden sm:block bg-gradient-gold hover:opacity-90 text-white text-sm font-semibold px-5 py-2.5 rounded-lg transition-all duration-300 shadow-[0_4px_15px_rgba(212,175,55,0.4)]">
               Get in touch
               <svg className="w-4 h-4 ml-1.5 inline-block" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M12 5v14M19 12H5" />

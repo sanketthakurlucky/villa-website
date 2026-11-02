@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { MapPin, Calendar, Users, Search, ChevronDown, ChevronLeft, ChevronRight, Sparkles, Waves, Utensils, Shield, Dumbbell, Coffee, Bath, Car, Wind, Wifi, Droplet, Sunrise, Flame, ChefHat } from 'lucide-react';
-import { Button } from '@/components/ui/Button';
+
 import { cn } from '@/lib/utils';
 
 const destinations = [
@@ -94,10 +94,10 @@ export default function Hero() {
       <div className="relative z-10 w-full container-main py-20 flex-1 flex flex-col justify-center">
         <div className="max-w-4xl mx-auto text-center text-white mb-16">
           <span className="inline-block bg-white/10 backdrop-blur-sm border border-white/20 px-4 py-2 rounded-full text-sm font-medium mb-6 animate-fade-in">
-            Flat 10% Off! Use Code: <span className="font-semibold text-luxPink">SEASALT10</span>
+            Flat 10% Off! Use Code: <span className="font-semibold gold-accent">SEASALT10</span>
           </span>
-          <h1 className="text-display-xl sm:text-[5rem] lg:text-[6rem] font-semibold leading-tight animate-slide-up">
-            Curated Luxury <span className="script-accent font-normal text-luxPink">Villas</span> Across India
+          <h1 className="hero-title leading-tight animate-slide-up">
+            Curated Luxury <span className="gold-accent">Villas</span> Across India
           </h1>
           <p className="text-body-lg sm:text-xl text-white/90 mt-6 max-w-2xl mx-auto animate-slide-up animation-delay-200">
             Handpicked private pool villas with in-house chefs, butler service & personalized experiences.
@@ -165,13 +165,17 @@ export default function Hero() {
             </div>
 
             <div className="mt-6 pt-6 border-t border-white/20 flex items-center justify-center gap-4">
-              <Button size="xl" className="w-full sm:w-auto flex-1 sm:flex-none" onClick={handleSearch}>
-                <Search className="w-5 h-5 mr-2" />
+              <button
+                type="button"
+                onClick={handleSearch}
+                className="btn-gold w-full sm:w-auto flex-1 sm:flex-none px-8 py-4 text-lg flex items-center justify-center gap-2"
+              >
+                <Search className="w-5 h-5" />
                 Search Villas
-              </Button>
+              </button>
               <Link
                 href="/destinations"
-                className="hidden sm:inline-flex items-center gap-2 text-sm font-medium text-white/80 hover:text-white transition-colors"
+                className="hidden sm:inline-flex items-center gap-2 text-sm font-medium text-white/80 hover:text-white hover:text-gold-accent transition-colors"
               >
                 Browse all destinations <ChevronRight className="w-4 h-4" />
               </Link>
